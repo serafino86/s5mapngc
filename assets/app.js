@@ -1,11 +1,11 @@
 (function () {
+
   /* ── THEME ── */
   var THEME_KEY = 'nc-fiodena-theme';
   var body = document.body;
-  var themeBtn = document.getElementById('theme-toggle');
-
   function applyTheme(t) { body.classList.toggle('dark', t === 'dark'); }
   applyTheme(localStorage.getItem(THEME_KEY) || 'light');
+  var themeBtn = document.getElementById('theme-toggle');
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
       var next = body.classList.contains('dark') ? 'light' : 'dark';
@@ -18,51 +18,48 @@
   var LANG_KEY = 'nc-fiodena-lang';
   var currentLang = localStorage.getItem(LANG_KEY) || 'it';
 
-  function t(key) {
+  function getText(key) {
     var T = window.NCTranslations;
-    if (!T) return '';
-    var lang = T[currentLang] || T['it'];
-    return lang[key] !== undefined ? lang[key] : (T['it'][key] || '');
+    if (!T) return null;
+    var dict = T[currentLang] || T['it'];
+    if (dict[key] !== undefined) return dict[key];
+    return T['it'] ? T['it'][key] : null;
   }
 
   function applyTranslations() {
-    /* text nodes */
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      el.textContent = t(el.dataset.i18n);
+      var v = getText(el.getAttribute('data-i18n'));
+      if (v !== null) el.textContent = v;
     });
-    /* html nodes */
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-      el.innerHTML = t(el.dataset.i18nHtml);
+      var v = getText(el.getAttribute('data-i18n-html'));
+      if (v !== null) el.innerHTML = v;
     });
-    /* placeholders */
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      el.placeholder = t(el.dataset.i18nPlaceholder);
-    });
-    /* active lang pill */
-    document.querySelectorAll('.lang-pill').forEach(function (btn) {
-      btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    /* sync active pill */
+    document.querySelectorAll('.lang-pill[data-lang]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
     });
   }
 
   function setLang(lang) {
-    if (!window.NCTranslations || !window.NCTranslations[lang]) return;
+    var T = window.NCTranslations;
+    if (!T || !T[lang]) return;
     currentLang = lang;
     localStorage.setItem(LANG_KEY, lang);
     applyTranslations();
   }
 
-  /* wire lang pills */
-  document.querySelectorAll('.lang-pill').forEach(function (btn) {
-    btn.dataset.lang = btn.textContent.trim().toLowerCase();
-    btn.addEventListener('click', function () { setLang(btn.dataset.lang); });
+  /* wire lang pills — data-lang already in HTML */
+  document.querySelectorAll('.lang-pill[data-lang]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setLang(btn.getAttribute('data-lang'));
+    });
   });
 
-  /* run after translations.js is loaded */
+  /* apply on load */
   function init() {
     if (window.NCTranslations) {
       applyTranslations();
-    } else {
-      document.addEventListener('nc-translations-ready', applyTranslations);
     }
   }
 
@@ -71,4 +68,5 @@
   } else {
     init();
   }
+
 })();
