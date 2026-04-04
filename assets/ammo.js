@@ -170,7 +170,7 @@
     statMain.textContent = mode === "target" ? Math.round(summary.avg) : (Math.round(summary.avg * 10) / 10).toFixed(1);
     statRange.textContent = summary.min + " / " + summary.max;
     statNote.textContent =
-      (mode === "target" ? "Ammo medio stimato" : "Level reach medio") + " su " + runs() + " run";
+      (mode === "target" ? "Estimated ammo needed" : "Estimated level reach") + " over " + runs() + " runs";
 
     renderHistogram(buildHistogram(values, mode), mode);
   }
@@ -183,7 +183,7 @@
       .then(function (data) {
         config = data;
         setModeUi();
-        statNote.textContent = runs() + " run, config da JSON";
+        statNote.textContent = runs() + " runs, config from JSON";
       });
   }
 

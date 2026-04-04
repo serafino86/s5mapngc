@@ -32,16 +32,23 @@
 
       <section class="tool-main">
         <article class="card">
-          <h1>Ammo Bonanza Calculator</h1>
+          <p class="eyebrow">Event Calculators</p>
+          <h1>Ammo Bonanza</h1>
           <p class="muted">
-            Event simulator in stile NGC command console: logica reale estratta dal bundle pubblico,
-            nessuna API runtime.
+            Calculate ammo needs or potential level reach for the Ammo Bonanza event. The result is a simulation-based estimate,
+            useful for planning but still luck dependent.
           </p>
+
+          <div class="detail-card">
+            <strong>Calculation Settings</strong>
+            <span class="palette-note">This calculator simulates the prize level system with increasing weights and depletion from the reward pool.</span>
+            <span class="palette-note">Each calculation runs <code>5,000</code> simulations to give a realistic range.</span>
+          </div>
 
           <div class="form-block">
             <div class="radio-row">
-              <label><input type="radio" name="mode" value="target" checked /> Ammo per target</label>
-              <label><input type="radio" name="mode" value="current" /> Livello con ammo corrente</label>
+              <label><input type="radio" name="mode" value="target" checked /> Calculate ammo needed for target level</label>
+              <label><input type="radio" name="mode" value="current" /> Calculate level reach with current ammo</label>
             </div>
 
             <label class="field">
@@ -54,7 +61,7 @@
 
           <div class="result-grid">
             <div class="stat-card">
-              <span class="stat-label">Media</span>
+              <span class="stat-label">Average</span>
               <strong id="stat-main">-</strong>
             </div>
             <div class="stat-card">
@@ -62,7 +69,7 @@
               <strong id="stat-range">-</strong>
             </div>
             <div class="stat-card">
-              <span class="stat-label">Nota</span>
+              <span class="stat-label">Simulation</span>
               <strong id="stat-note">5000 run</strong>
             </div>
           </div>
@@ -71,6 +78,11 @@
             <h2>Distribuzione</h2>
             <div id="histogram" class="histogram"></div>
           </div>
+
+          <p class="muted small">
+            For event logic details, see the public guide:
+            <a href="https://cpt-hedge.com/guides/ammo-bonanza" target="_blank" rel="noreferrer">Ammo Bonanza & Bullseye Loot Guide</a>.
+          </p>
 
           <p class="muted small">
             Configurazione visibile in <code>assets/data/ammo-bonanza.json</code>, esecuzione 100% in browser.
