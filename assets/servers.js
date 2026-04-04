@@ -2,8 +2,8 @@
   var page = document.body.dataset.page;
   if (page !== "servers") return;
 
-  var SERVER_DATA_URL = "/assets/data/servers.json";
-  var ALLIANCE_DATA_URL = "/assets/data/server-alliances.json";
+  var SERVER_DATA_URL = "../assets/data/servers.json";
+  var ALLIANCE_DATA_URL = "../assets/data/server-alliances.json";
   var STORAGE_KEY = "night-commando-server-filters";
   var tbody = document.getElementById("servers-body");
   var searchInput = document.getElementById("server-search");

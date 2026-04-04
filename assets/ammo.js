@@ -2,7 +2,7 @@
   var page = document.body.dataset.page;
   if (page !== "ammo-bonanza") return;
 
-  var DATA_URL = "/assets/data/ammo-bonanza.json";
+  var DATA_URL = "../../assets/data/ammo-bonanza.json";
   var modeInputs = document.querySelectorAll('input[name="mode"]');
   var valueInput = document.getElementById("value-input");
   var valueLabel = document.getElementById("value-label");
