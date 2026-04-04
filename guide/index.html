@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>S5 Guide — Night Commando</title>
+    <title>Guida S5 — Night Commando Fiodena</title>
     <link rel="stylesheet" href="../assets/styles.css" />
     <style>
       .guide-hero {
@@ -49,10 +49,7 @@
         line-height: 1.7;
         position: relative;
       }
-
-      .guide-section {
-        margin: 2.5rem 0;
-      }
+      .guide-section { margin: 2.5rem 0; }
       .guide-section h2 {
         font-size: 1.4rem;
         color: var(--accent-strong);
@@ -61,54 +58,16 @@
         margin-bottom: 1.25rem;
         letter-spacing: 0.05em;
       }
-      .guide-section h3 {
-        font-size: 1.1rem;
-        color: var(--secondary);
-        margin: 1.25rem 0 0.5rem;
-      }
-      .guide-section p {
-        color: var(--text);
-        line-height: 1.75;
-        margin: 0.5rem 0;
-      }
-
-      .resources-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin: 1rem 0;
-      }
-      .resource-card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 1rem 1.25rem;
-      }
+      .guide-section h3 { font-size: 1.1rem; color: var(--secondary); margin: 1.25rem 0 0.5rem; }
+      .guide-section p { color: var(--text); line-height: 1.75; margin: 0.5rem 0; }
+      .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+      .resource-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.25rem; }
       .resource-card .resource-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
       .resource-card .resource-name { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
       .resource-card .resource-desc { color: var(--muted); font-size: 0.82rem; margin-top: 0.3rem; line-height: 1.5; }
-
-      .weeks-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin: 1.5rem 0;
-      }
-      .week-card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 1.5rem;
-        position: relative;
-        overflow: hidden;
-      }
-      .week-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 4px; height: 100%;
-        background: var(--week-color, var(--accent));
-      }
+      .weeks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+      .week-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem; position: relative; overflow: hidden; }
+      .week-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--week-color, var(--accent)); }
       .week-card.w1 { --week-color: #4caf50; }
       .week-card.w2 { --week-color: #8bc34a; }
       .week-card.w3 { --week-color: #00bcd4; }
@@ -117,127 +76,46 @@
       .week-card.w6 { --week-color: #ff5722; }
       .week-card.w7 { --week-color: #f44336; }
       .week-card.w8 { --week-color: #ff9800; }
-
-      .week-number {
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.15em;
-        color: var(--week-color, var(--accent));
-        margin-bottom: 0.3rem;
-      }
-      .week-card h3 {
-        font-size: 1.05rem;
-        color: #fff;
-        margin: 0 0 0.75rem;
-      }
-      .week-card ul {
-        margin: 0.5rem 0 0;
-        padding-left: 1.2rem;
-        color: var(--muted);
-        font-size: 0.88rem;
-        line-height: 1.7;
-      }
-      .week-card .week-focus {
-        font-size: 0.85rem;
-        color: var(--text);
-        line-height: 1.6;
-        margin-bottom: 0.75rem;
-      }
-
-      .tip-box {
-        background: rgba(255,152,0,0.08);
-        border: 1px solid rgba(255,152,0,0.3);
-        border-radius: 10px;
-        padding: 1rem 1.25rem;
-        margin: 1rem 0;
-        display: flex;
-        gap: 0.75rem;
-        align-items: flex-start;
-      }
+      .week-number { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--week-color, var(--accent)); margin-bottom: 0.3rem; }
+      .week-card h3 { font-size: 1rem; color: #fff; margin: 0; }
+      .tip-box { background: rgba(255,152,0,0.08); border: 1px solid rgba(255,152,0,0.3); border-radius: 10px; padding: 1rem 1.25rem; margin: 1rem 0; display: flex; gap: 0.75rem; align-items: flex-start; }
       .tip-box .tip-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
       .tip-box .tip-label { font-weight: 700; color: #ff9800; font-size: 0.8rem; letter-spacing: 0.1em; display: block; margin-bottom: 0.2rem; }
       .tip-box p { color: var(--text); font-size: 0.88rem; line-height: 1.6; margin: 0; }
-
-      .limits-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1rem 0;
-        font-size: 0.88rem;
-      }
-      .limits-table th {
-        background: var(--panel-2);
-        color: var(--accent);
-        padding: 0.6rem 1rem;
-        text-align: left;
-        border-bottom: 1px solid var(--line);
-      }
-      .limits-table td {
-        padding: 0.6rem 1rem;
-        border-bottom: 1px solid rgba(130,168,122,0.15);
-        color: var(--text);
-      }
-      .limits-table tr:hover td { background: rgba(76,175,80,0.05); }
-
-      .buildings-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 0.75rem;
-        margin: 1rem 0;
-      }
-      .building-item {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        font-size: 0.87rem;
-      }
+      .limits-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
+      .limits-table th { background: var(--panel-2); color: var(--accent); padding: 0.6rem 1rem; text-align: left; border-bottom: 1px solid var(--line); }
+      .limits-table td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(130,168,122,0.15); color: var(--text); }
+      .buildings-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+      .building-item { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.87rem; }
       .building-item strong { color: var(--accent); display: block; margin-bottom: 0.2rem; }
       .building-item span { color: var(--muted); line-height: 1.5; }
-
-      .update-banner {
-        background: linear-gradient(135deg, rgba(76,175,80,0.15), rgba(139,195,74,0.1));
-        border: 1px solid rgba(76,175,80,0.4);
-        border-radius: 10px;
-        padding: 0.9rem 1.25rem;
-        margin: 1.5rem 0;
-        font-size: 0.9rem;
-        color: var(--accent-strong);
-      }
-      .update-banner strong { font-weight: 700; }
-
-      .map-link-card {
-        background: var(--panel);
-        border: 1px solid rgba(33,150,243,0.4);
-        border-radius: 12px;
-        padding: 1.25rem 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin: 1rem 0;
-        text-decoration: none;
-        transition: border-color 0.2s, box-shadow 0.2s;
-      }
-      .map-link-card:hover {
-        border-color: rgba(33,150,243,0.8);
-        box-shadow: 0 0 20px rgba(33,150,243,0.15);
-      }
+      .update-banner { background: linear-gradient(135deg, rgba(76,175,80,0.15), rgba(139,195,74,0.1)); border: 1px solid rgba(76,175,80,0.4); border-radius: 10px; padding: 0.9rem 1.25rem; margin: 1.5rem 0; font-size: 0.9rem; color: var(--accent-strong); }
+      .map-link-card { background: var(--panel); border: 1px solid rgba(33,150,243,0.4); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; margin: 1rem 0; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s; }
+      .map-link-card:hover { border-color: rgba(33,150,243,0.8); box-shadow: 0 0 20px rgba(33,150,243,0.15); }
       .map-link-card .map-icon { font-size: 2rem; }
       .map-link-card .map-text strong { color: #42a5f5; display: block; }
       .map-link-card .map-text span { color: var(--muted); font-size: 0.85rem; }
+      .week-badge { display:inline-flex; align-items:center; font-weight:800; font-size:0.72rem; letter-spacing:0.15em; padding:0.3rem 0.9rem; border-radius:20px; margin-bottom:1rem; }
     </style>
   </head>
   <body data-page="guide">
     <header class="site-header">
       <div class="wrap nav">
-        <a class="brand" href="../">Night Commando</a>
+        <a class="brand" href="../" data-i18n="nav_brand">Night Commando Fiodena</a>
         <nav class="main-nav">
-          <a href="../">Home</a>
-          <a href="../events/ammo-bonanza/">Ammo Bonanza</a>
-          <a href="../servers/">Servers</a>
-          <a href="../maps/planner/">Planner</a>
-          <a href="../guide/" aria-current="page">Guide S5</a>
+          <a href="../" data-i18n="nav_home">Home</a>
+          <a href="../events/ammo-bonanza/" data-i18n="nav_ammo">Ammo Bonanza</a>
+          <a href="../servers/" data-i18n="nav_servers">Servers</a>
+          <a href="../maps/planner/" data-i18n="nav_planner">Planner</a>
+          <a href="../guide/" aria-current="page" data-i18n="nav_guide">Guida S5</a>
         </nav>
-        <button id="theme-toggle" class="ghost-button" type="button">Tema</button>
+        <div style="display:flex;gap:0.4rem;align-items:center">
+          <button class="lang-pill active" type="button">IT</button>
+          <button class="lang-pill" type="button">EN</button>
+          <button class="lang-pill" type="button">FR</button>
+          <button class="lang-pill" type="button">DE</button>
+          <button id="theme-toggle" class="ghost-button" type="button" data-i18n="ui_theme">Tema</button>
+        </div>
       </div>
     </header>
 
@@ -245,321 +123,252 @@
       <div class="wrap">
 
         <div class="guide-hero">
-          <div class="season-badge">STAGIONE 5 · WILD WEST</div>
-          <h1>Last War: Survival — Guida Definitiva S5</h1>
-          <p>Tabella di marcia completa per il tema Wild West. Padroneggia ogni settimana con strategie dettagliate che coprono sistemi di caffè, fondi bancari, City Clash, armi esclusive e meccaniche di fine gioco in tutte le 8 settimane.</p>
+          <div class="season-badge" data-i18n="guide_badge">STAGIONE 5 · WILD WEST</div>
+          <h1 data-i18n="guide_hero_title">Last War: Survival — Guida Definitiva S5</h1>
+          <p data-i18n="guide_hero_sub">Tabella di marcia completa per il tema Wild West. Padroneggia ogni settimana con strategie dettagliate che coprono sistemi di caffè, fondi bancari, City Clash, armi esclusive e meccaniche di fine gioco in tutte le 8 settimane.</p>
         </div>
 
-        <div class="update-banner">
-          <strong>Aggiornamento live:</strong> la funzione di cambio di programma di gara degli armamenti e Slot Swap sono ora in diretta su tutti i server!
-        </div>
+        <div class="update-banner" data-i18n-html="guide_update"></div>
 
         <!-- PANORAMICA -->
         <div class="guide-section">
-          <h2>Panoramica della Stagione</h2>
-          <p>La stagione 5 dura <strong>8 settimane</strong> con un sistema di progressione strutturato costruito attorno ai punti di influenza dell'Alleanza e ai risultati individuali. La stagione ruota attorno a tre sistemi di risorse principali:</p>
-
+          <h2 data-i18n="guide_overview_title">Panoramica della Stagione</h2>
+          <p data-i18n-html="guide_overview_intro"></p>
           <div class="resources-grid">
             <div class="resource-card">
               <div class="resource-icon">☕</div>
-              <div class="resource-name">Chicchi di Caffè</div>
-              <div class="resource-desc">Valuta primaria per gli aggiornamenti stagionali degli edifici: Coffee Factory, Tank Bar, Air Bar, Missile Bar.</div>
+              <div class="resource-name" data-i18n="guide_res1_name">Chicchi di Caffè</div>
+              <div class="resource-desc" data-i18n="guide_res1_desc"></div>
             </div>
             <div class="resource-card">
               <div class="resource-icon">🫖</div>
-              <div class="resource-name">Caffè</div>
-              <div class="resource-desc">Generato dalle Coffee Factory. Utilizzato per la progressione del Caffeine Institute che aumenta la tua resistenza al virus.</div>
+              <div class="resource-name" data-i18n="guide_res2_name">Caffè</div>
+              <div class="resource-desc" data-i18n="guide_res2_desc"></div>
             </div>
             <div class="resource-card">
               <div class="resource-icon">💎</div>
-              <div class="resource-name">CrystalGold</div>
-              <div class="resource-desc">Guadagnato uccidendo Zombie. Usato per acquisti nel negozio e investimenti bancari nelle Roccaforti.</div>
+              <div class="resource-name" data-i18n="guide_res3_name">CrystalGold</div>
+              <div class="resource-desc" data-i18n="guide_res3_desc"></div>
             </div>
           </div>
-
-          <p>La Resistenza al Virus richiesta per le Roccaforti Bancarie di alto livello supera i valori delle stagioni precedenti (fino a <strong>39.900 per il Boss di livello 10</strong>). I livelli Zombies e Doom Elite superano i 60 e arrivano fino a <strong>120</strong>, consentendo abbondanti prime-ricompense di uccisione e sfide per Doom Elites di livello superiore.</p>
-
+          <p data-i18n-html="guide_overview_virus"></p>
           <a class="map-link-card" href="../maps/planner/">
             <div class="map-icon">🗺️</div>
             <div class="map-text">
-              <strong>Mappa Interattiva Stagione 5</strong>
-              <span>Pianifica il tuo percorso, traccia i punti di influenza e la produzione di CrystalGold. Tieni d'occhio le alleanze avversarie.</span>
+              <strong data-i18n="guide_map_title">Mappa Interattiva Stagione 5</strong>
+              <span data-i18n="guide_map_desc">Pianifica il tuo percorso, traccia i punti di influenza e la produzione di CrystalGold.</span>
             </div>
           </a>
         </div>
 
         <!-- PRE-STAGIONE -->
         <div class="guide-section">
-          <h2>Preparazione Pre-Stagione</h2>
-          <p>Prima che la stagione inizi ufficialmente, c'è una <strong>pre-stagione di 2 settimane</strong> con azioni fondamentali da compiere.</p>
-
-          <h3>Selezione Area (Warzone)</h3>
-          <p>Nella stagione 5 ci sono <strong>8 zone di guerra</strong> che compongono la mappa. Durante la pre-stagione ogni zona di guerra sceglie la propria preferenza tra le 8 disponibili. Scegli con attenzione la posizione di partenza per massimizzare la progressione.</p>
-
-          <h3>Alliance Safe Time</h3>
-          <p>Ogni <strong>mercoledì e sabato</strong> le città possono essere prese in 3 intervalli di tempo durante il giorno. Ogni alleanza può bloccare uno di questi 3 intervalli per proteggersi durante quel periodo. Scegli il calendario più adatto alla tua alleanza.</p>
-
-          <h3>Limiti di Acquisizione</h3>
+          <h2 data-i18n="guide_pre_title">Preparazione Pre-Stagione</h2>
+          <p data-i18n-html="guide_pre_intro"></p>
+          <h3 data-i18n="guide_pre_wz_title">Selezione Area (Warzone)</h3>
+          <p data-i18n-html="guide_pre_wz_text"></p>
+          <h3 data-i18n="guide_pre_st_title">Alliance Safe Time</h3>
+          <p data-i18n-html="guide_pre_st_text"></p>
+          <h3 data-i18n="guide_pre_lim_title">Limiti di Acquisizione</h3>
           <table class="limits-table">
             <thead>
-              <tr><th>Punto di partenza</th><th>Città</th><th>Roccaforti</th></tr>
+              <tr>
+                <th data-i18n="guide_pre_lim_h1">Punto di partenza</th>
+                <th data-i18n="guide_pre_lim_h2">Città</th>
+                <th data-i18n="guide_pre_lim_h3">Roccaforti</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>Inizio stagione</td><td>8</td><td>4</td></tr>
-              <tr><td>Ogni città catturata</td><td>—</td><td>+1 al limite</td></tr>
-              <tr><td>Massimo raggiungibile</td><td>8</td><td>12</td></tr>
+              <tr><td data-i18n="guide_pre_lim_r1">Inizio stagione</td><td>8</td><td>4</td></tr>
+              <tr><td data-i18n="guide_pre_lim_r2">Ogni città catturata</td><td>—</td><td>+1</td></tr>
+              <tr><td data-i18n="guide_pre_lim_r3">Massimo raggiungibile</td><td>8</td><td>12</td></tr>
             </tbody>
           </table>
-
           <div class="tip-box">
-            <div class="tip-icon">🦔</div>
-            <div>
-              <span class="tip-label">CptHedgehog Tips</span>
-              <p>Ogni domenica durante la stagione è un <strong>giorno di tregua</strong>: nessuna Roccaforte della Banca può essere presa in questo giorno!</p>
-            </div>
+            <div class="tip-icon">⚠️</div>
+            <div><p data-i18n-html="guide_pre_tip"></p></div>
           </div>
         </div>
 
         <!-- EDIFICI -->
         <div class="guide-section">
-          <h2>Edifici e Sistemi Base</h2>
-
+          <h2 data-i18n="guide_bld_title">Edifici e Sistemi Base</h2>
           <div class="buildings-list">
-            <div class="building-item"><strong>Coffee Factory</strong><span>Edificio principale da livellare per produrre caffè per il Caffeine Institute.</span></div>
-            <div class="building-item"><strong>Caffeine Institute</strong><span>Fornisce Resistenza al Virus e bonus speciali del caffè.</span></div>
-            <div class="building-item"><strong>Protector's Field</strong><span>Contiene i tuoi protettori del deserto come nelle stagioni precedenti.</span></div>
-            <div class="building-item"><strong>CrystalGold Shop</strong><span>Sbloccato presto: scambia CrystalGold con oggetti e risorse.</span></div>
-            <div class="building-item"><strong>Tanker Bar</strong><span>Edificio specifico per aumentare gli attributi dell'eroe Tank.</span></div>
-            <div class="building-item"><strong>Pilot Bar</strong><span>Edificio specifico per aumentare gli attributi dell'eroe Aircraft.</span></div>
-            <div class="building-item"><strong>Missileer Bar</strong><span>Edificio specifico per aumentare gli attributi dell'eroe Missile.</span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b1">Coffee Factory</strong><span data-i18n="guide_bld_b1d"></span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b2">Caffeine Institute</strong><span data-i18n="guide_bld_b2d"></span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b3">Protector's Field</strong><span data-i18n="guide_bld_b3d"></span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b4">CrystalGold Shop</strong><span data-i18n="guide_bld_b4d"></span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b5">Tanker Bar</strong><span data-i18n="guide_bld_b5d"></span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b6">Pilot Bar</strong><span data-i18n="guide_bld_b6d"></span></div>
+            <div class="building-item"><strong data-i18n="guide_bld_b7">Missileer Bar</strong><span data-i18n="guide_bld_b7d"></span></div>
           </div>
-
           <div class="tip-box">
             <div class="tip-icon">⚙️</div>
             <div>
-              <span class="tip-label">Ottimizzazione Professione</span>
-              <p>Usa la professione <strong>Ingegnere</strong> nelle prime settimane della S5: le riduzioni risorse si applicano anche alle risorse stagionali, accelerando l'upgrade degli edifici.</p>
+              <span class="tip-label" data-i18n="guide_bld_prof_label">Ottimizzazione Professione</span>
+              <p data-i18n-html="guide_bld_prof_tip"></p>
             </div>
           </div>
-
-          <h3>S5 Tactics Cards</h3>
-          <p>La stagione 5 reintroduce le <strong>Tactics Cards</strong> che impattano gli attributi PvE e PvP. Alcune card della S4 tornano con attributi ridotti, e nuove card vengono introdotte. Consulta la guida aggiornata alle Tactics Card per la Stagione 4 e 5.</p>
-
-          <h3>Sistema Special Coffee</h3>
-          <p>Il sistema di buff <strong>Special Coffee</strong> aggiunge profondità tattica con potenziamenti temporanei: boost alla Resistenza al Virus, bonus di combattimento specializzati. Disponibili <strong>9 ricette</strong> sbloccabili.</p>
-
-          <p><em>Nota: gli eventi Alliance Exercise (Marshall Guard) e Zombie Siege Alliance non saranno disponibili durante la stagione 5.</em></p>
+          <h3 data-i18n="guide_bld_tactics_title">S5 Tactics Cards</h3>
+          <p data-i18n-html="guide_bld_tactics_text"></p>
+          <h3 data-i18n="guide_bld_coffee_title">Sistema Special Coffee</h3>
+          <p data-i18n-html="guide_bld_coffee_text"></p>
+          <p><em data-i18n="guide_bld_events_note"></em></p>
         </div>
 
         <!-- GIORNI DI GUERRA -->
         <div class="guide-section">
-          <h2>Giorni di Guerra</h2>
-          <p>A differenza delle stagioni precedenti, durante la stagione 5 le <strong>Città si possono prendere solo mercoledì e sabato</strong>. Le Bank Strongholds si possono prendere ogni giorno, purché tu abbia abbastanza Resistenza al Virus per battere il boss.</p>
-          <p>Puoi ancora fare grandi passi avanti assicurandoti di prendere i livelli più alti possibili in ogni giorno di guerra. Tieni sempre d'occhio l'<strong>Alliance Safe Time</strong> delle alleanze avversarie: ti impedirà di prendere le loro Città o Roccaforti durante quella finestra temporale.</p>
+          <h2 data-i18n="guide_war_title">Giorni di Guerra</h2>
+          <p data-i18n-html="guide_war_text1"></p>
+          <p data-i18n-html="guide_war_text2"></p>
           <div class="tip-box">
-            <div class="tip-icon">🦔</div>
-            <div>
-              <span class="tip-label">CptHedgehog Tips</span>
-              <p>Ogni domenica durante la stagione è un <strong>giorno di tregua</strong>: nessuna Roccaforte della Banca può essere presa in questo giorno!</p>
-            </div>
+            <div class="tip-icon">⚠️</div>
+            <div><p data-i18n-html="guide_war_tip"></p></div>
           </div>
         </div>
 
         <!-- GIORNO 1 -->
         <div class="guide-section">
-          <h2>Giorno 1 — Quick Start</h2>
-          <p>Il primo giorno della stagione 5 è fondamentale per stabilire il vantaggio iniziale:</p>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li>Doom Walker prime kill per <strong>300.000 Coffee Beans</strong></li>
-            <li>Usa il biglietto Hero Return strategicamente per Chicchi di Caffè aggiuntivi</li>
-            <li>Priorità di upgrade: Coffee Factory seguendo il percorso ottimale</li>
-          </ul>
+          <h2 data-i18n="guide_day1_title">Giorno 1 — Quick Start</h2>
+          <p data-i18n="guide_day1_intro">Il primo giorno della stagione 5 è fondamentale per stabilire il vantaggio iniziale:</p>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_day1_list"></ul>
         </div>
 
-        <!-- SETTIMANE DETTAGLIO -->
+        <!-- SETTIMANE OVERVIEW -->
         <div class="guide-section">
-          <h2>Tabella di Marcia Settimanale</h2>
-
-          <!-- OVERVIEW RAPIDO -->
+          <h2 data-i18n="guide_weekly_title">Tabella di Marcia Settimanale</h2>
           <div class="weeks-grid">
-            <div class="week-card w1"><div class="week-number">SETTIMANA 1</div><h3>Foundation Building</h3></div>
-            <div class="week-card w2"><div class="week-number">SETTIMANA 2</div><h3>Verso il Centro</h3></div>
-            <div class="week-card w3"><div class="week-number">SETTIMANA 3</div><h3>Ulteriore Progressione</h3></div>
-            <div class="week-card w4"><div class="week-number">SETTIMANA 4</div><h3>Outposts & Strongholds</h3></div>
-            <div class="week-card w5"><div class="week-number">SETTIMANA 5</div><h3>Combattere!</h3></div>
-            <div class="week-card w6"><div class="week-number">SETTIMANA 6</div><h3>Più Lotta!</h3></div>
-            <div class="week-card w7"><div class="week-number">SETTIMANA 7</div><h3>Battaglie Finali</h3></div>
-            <div class="week-card w8"><div class="week-number">SETTIMANA 8</div><h3>Settlement & Transfer Surge</h3></div>
+            <div class="week-card w1"><div class="week-number" data-i18n="w1_badge">SETTIMANA 1</div><h3 data-i18n="w1_title">Foundation Building</h3></div>
+            <div class="week-card w2"><div class="week-number" data-i18n="w2_badge">SETTIMANA 2</div><h3 data-i18n="w2_title">Verso il Centro</h3></div>
+            <div class="week-card w3"><div class="week-number" data-i18n="w3_badge">SETTIMANA 3</div><h3 data-i18n="w3_title">Ulteriore Progressione</h3></div>
+            <div class="week-card w4"><div class="week-number" data-i18n="w4_badge">SETTIMANA 4</div><h3 data-i18n="w4_title">Outposts &amp; Strongholds</h3></div>
+            <div class="week-card w5"><div class="week-number" data-i18n="w5_badge">SETTIMANA 5</div><h3 data-i18n="w5_title">Combattere!</h3></div>
+            <div class="week-card w6"><div class="week-number" data-i18n="w6_badge">SETTIMANA 6</div><h3 data-i18n="w6_title">Più Lotta!</h3></div>
+            <div class="week-card w7"><div class="week-number" data-i18n="w7_badge">SETTIMANA 7</div><h3 data-i18n="w7_title">Battaglie Finali</h3></div>
+            <div class="week-card w8"><div class="week-number" data-i18n="w8_badge">SETTIMANA 8</div><h3 data-i18n="w8_title">Settlement &amp; Transfer Surge</h3></div>
           </div>
         </div>
 
-        <!-- SETTIMANA 1 DETTAGLIO -->
+        <!-- SETTIMANA 1 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#4caf50;color:#000;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 1</div>
-            <h2 style="margin:0;border:none;padding:0">Foundation Building</h2>
+            <div class="week-badge" style="background:#4caf50;color:#000" data-i18n="w1_badge">SETTIMANA 1</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w1_title">Foundation Building</h2>
           </div>
-          <p>La settimana 1 è volta a conoscere le basi della stagione, iniziare a costruire la Resistenza al Virus e ottenere le prime ricompense di uccisione. Potrai anche progredire nella tua zona sicura di Warzone prendendo Bank Strongholds e Città.</p>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Bank Strongholds livelli 1–3</strong> disponibili — la Resistenza al Virus è il fattore limitante, alzala il più rapidamente possibile</li>
-            <li><strong>Città livello 1</strong> (mercoledì) e <strong>livello 2</strong> (sabato) — puoi prendere un totale di 4 città questa settimana</li>
-            <li><strong>Minigioco High Noon</strong> — determina la traiettoria di un proiettile per farlo rimbalzare tra i muri ed eliminare il nemico</li>
-            <li><strong>CrystalGold Shop</strong> sbloccato aggiornando gli edifici stagionali</li>
-            <li><strong>Arma Esclusiva di Fiona</strong> disponibile giovedì</li>
-          </ul>
-
-          <h3>Focus strategico</h3>
-          <p>Inizia aumentando la produzione della Coffee Factory livellandola seguendo il percorso di upgrade ottimale. Questo ti permetterà di sfruttare al meglio la produzione per aumentare ulteriormente il livello del Caffeine Institute.</p>
-
+          <p data-i18n="guide_w1_intro"></p>
+          <h3 data-i18n="guide_w1_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w1_unlocks"></ul>
+          <h3 data-i18n="guide_w1_focus_title">Focus strategico</h3>
+          <p data-i18n="guide_w1_focus"></p>
           <div class="tip-box">
             <div class="tip-icon">💎</div>
             <div>
-              <span class="tip-label">Depositi CrystalGold nelle Roccaforti</span>
-              <p>Il CrystalGold ottenuto dalle First Kill Rewards può essere depositato nelle Bank Strongholds. Importo massimo: <strong>6.000 CrystalGold</strong>, limitato a <strong>3 volte al giorno</strong>. Depositare per periodi più lunghi aumenta i rendimenti, ma il tuo CrystalGold può essere saccheggiato da altri. Per iniziare, deposita per un solo giorno e valuta nel tempo se il rischio vale la ricompensa in base a quanto bene la tua alleanza riesce a proteggersi.</p>
+              <span class="tip-label" data-i18n="guide_w1_tip_label">Depositi CrystalGold</span>
+              <p data-i18n-html="guide_w1_tip"></p>
             </div>
           </div>
         </div>
 
-        <!-- SETTIMANA 2 DETTAGLIO -->
+        <!-- SETTIMANA 2 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#8bc34a;color:#000;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 2</div>
-            <h2 style="margin:0;border:none;padding:0">Fare la Strada per il Centro</h2>
+            <div class="week-badge" style="background:#8bc34a;color:#000" data-i18n="w2_badge">SETTIMANA 2</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w2_title">Verso il Centro</h2>
           </div>
-          <p>Nella settimana 2 potrai progredire attraverso la mappa prendendo fino a 2 Roccaforti al giorno. Con la Resistenza al Virus adeguata e squadre forti, puoi progredire rapidamente verso il centro. Non esiste limite se non la Resistenza al Virus necessaria per battere i boss delle Bank Strongholds.</p>
-          <p>Fatto bene, puoi raggiungere l'area centrale con le Bank Strongholds di livello 6 — queste non hanno un boss, quindi sono libere da prendere non appena hai terra adiacente e hai eliminato i piccoli zombie. Vicino al confine dell'area centrale potrai espanderti più facilmente anche in diagonale lungo il bordo.</p>
-
+          <p data-i18n="guide_w2_intro"></p>
+          <p data-i18n="guide_w2_intro2"></p>
           <div class="tip-box">
-            <div class="tip-icon">🦔</div>
+            <div class="tip-icon">🌐</div>
             <div>
-              <span class="tip-label">CptHedgehog Tips — Cross-Server</span>
-              <p>Puoi già prendere terra su <strong>altri server</strong> dalla settimana 2 se hai terreno adiacente! Il teletrasporto cross-server si abilita solo dalla settimana 3, quindi il tempo di marcia sarà più lungo — pianifica di conseguenza.</p>
+              <span class="tip-label" data-i18n="guide_w2_tip_label">Cross-Server</span>
+              <p data-i18n-html="guide_w2_tip"></p>
             </div>
           </div>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Bank Strongholds livelli 1–6</strong> disponibili</li>
-            <li><strong>Città livello 3</strong> (mercoledì) e <strong>livello 4</strong> (sabato) — 4 città questa settimana</li>
-            <li><strong>Warzone Train</strong> — vendi il tuo Whiskey per CrystalGold. Attenzione: le merci possono essere saccheggiate da altri</li>
-            <li><strong>Polli di plastica</strong> compaiono casualmente dopo aver ucciso zombie — uccidili per premi giornalieri, una ricetta Special Coffee e la possibilità di ottenere una nuova emote</li>
-          </ul>
+          <h3 data-i18n="guide_w2_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w2_unlocks"></ul>
         </div>
 
-        <!-- SETTIMANA 3 DETTAGLIO -->
+        <!-- SETTIMANA 3 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#00bcd4;color:#000;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 3</div>
-            <h2 style="margin:0;border:none;padding:0">Ulteriore Progressione</h2>
+            <div class="week-badge" style="background:#00bcd4;color:#000" data-i18n="w3_badge">SETTIMANA 3</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w3_title">Ulteriore Progressione</h2>
           </div>
-          <p>La settimana 3 porta un sacco di novità sia per gli eventi legati alla Warzone che per gli eroi.</p>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Venom SSR → UR Promotion</strong> — puoi promuovere Venom a UR all'inizio della settimana 3</li>
-            <li><strong>Hero Swap</strong> — puoi scambiare livello e stelle tra due eroi. Riceverai 2 ticket per gli swap</li>
-            <li><strong>Cross Warzone Teleporting</strong> — da questa settimana puoi teletrasportarti nelle altre zone di guerra del tuo raggruppamento. Non ci sono teletrasporti gratuiti in questa stagione (è considerata la stessa mappa)</li>
-            <li><strong>Arma Esclusiva di Stetmann</strong> disponibile giovedì</li>
-            <li><strong>Città livello 5</strong> si sblocca mercoledì</li>
-            <li><strong>Trade Post</strong> aperte per la prima volta — riapriranno ogni 2 settimane</li>
-            <li><strong>Grand Nexus</strong> (Campidoglio) disponibile per la conquista</li>
-            <li><strong>Warzone Train Premium Sale</strong> sbloccato — vendi Whiskey a prezzo più alto</li>
-          </ul>
+          <p data-i18n="guide_w3_intro"></p>
+          <h3 data-i18n="guide_w3_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w3_unlocks"></ul>
         </div>
 
-        <!-- SETTIMANA 4 DETTAGLIO -->
+        <!-- SETTIMANA 4 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#2196f3;color:#fff;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 4</div>
-            <h2 style="margin:0;border:none;padding:0">Outposts & Strongholds</h2>
+            <div class="week-badge" style="background:#2196f3;color:#fff" data-i18n="w4_badge">SETTIMANA 4</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w4_title">Outposts &amp; Strongholds</h2>
           </div>
-          <p>Con la settimana 4 tutte le Roccaforti restanti diventano disponibili, permettendoti di raggiungere il centro se hai Resistenza al Virus sufficiente e il potere di combattimento per affrontare i boss. Si sbloccano anche i Warzone Outposts.</p>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Strongholds livelli 7–10</strong> sbloccati — puoi prendere tutte le Roccaforti rimanenti se riesci a battere i Boss Zombie a guardia</li>
-            <li><strong>Warzone Outposts</strong> — inizia la costruzione dell'Avamposto della tua Warzone. Aiuta a costruirlo il più velocemente possibile. È garantito un progresso minimo del <strong>+10% al giorno</strong> indipendentemente dagli aiuti</li>
-            <li><strong>Città livelli 6–7</strong> si aprono mercoledì, <strong>livelli 8–9</strong> sabato</li>
-          </ul>
+          <p data-i18n="guide_w4_intro"></p>
+          <h3 data-i18n="guide_w4_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w4_unlocks"></ul>
         </div>
 
-        <!-- SETTIMANA 5 DETTAGLIO -->
+        <!-- SETTIMANA 5 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#9c27b0;color:#fff;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 5</div>
-            <h2 style="margin:0;border:none;padding:0">Combattere!</h2>
+            <div class="week-badge" style="background:#9c27b0;color:#fff" data-i18n="w5_badge">SETTIMANA 5</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w5_title">Combattere!</h2>
           </div>
-          <p>La settimana 5 porta intense battaglie nella tua Warzone: gli Avamposti vengono ricostruiti, le città di livello 10 si sbloccano e inizia la prima conquista del Golden Palace.</p>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Città livello 10</strong> — le città centrali di livello 10 si sbloccano mercoledì (giorno 3)</li>
-            <li><strong>Warzone Outposts</strong> — completati e disponibili per l'attacco venerdì (giorno 5). Prima delle tre battaglie per gli Avamposti</li>
-            <li><strong>Golden Palace</strong> — si apre sabato (giorno 6) per la conquista a ogni alleanza adiacente</li>
-            <li><strong>Trade Post</strong> — di nuovo aperte per il combattimento</li>
-          </ul>
+          <p data-i18n="guide_w5_intro"></p>
+          <h3 data-i18n="guide_w5_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w5_unlocks"></ul>
         </div>
 
-        <!-- SETTIMANA 6 DETTAGLIO -->
+        <!-- SETTIMANA 6 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#ff5722;color:#fff;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 6</div>
-            <h2 style="margin:0;border:none;padding:0">Più Lotta!</h2>
+            <div class="week-badge" style="background:#ff5722;color:#fff" data-i18n="w6_badge">SETTIMANA 6</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w6_title">Più Lotta!</h2>
           </div>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Warzone Outposts</strong> — seconda conquista venerdì (giorno 5)</li>
-            <li><strong>Golden Palace</strong> — si riapre sabato (giorno 6) per la seconda conquista</li>
-            <li><strong>Arma Esclusiva di Morrison</strong> — l'ultima arma esclusiva della stagione disponibile giovedì</li>
-          </ul>
+          <h3 data-i18n="guide_w6_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w6_unlocks"></ul>
         </div>
 
-        <!-- SETTIMANA 7 DETTAGLIO -->
+        <!-- SETTIMANA 7 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#f44336;color:#fff;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 7</div>
-            <h2 style="margin:0;border:none;padding:0">Le Battaglie Finali</h2>
+            <div class="week-badge" style="background:#f44336;color:#fff" data-i18n="w7_badge">SETTIMANA 7</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w7_title">Battaglie Finali</h2>
           </div>
-          <p>Questa è l'ultima settimana in cui puoi lottare per le classifiche e i premi finali. Trade Post e Avamposti sono in palio, e l'ultima conquista per il Golden Palace avrà luogo. È anche l'ultima settimana in cui sono disponibili le azioni CrystalGold Tycoon — sfrutta al massimo saccheggi (del treno), High Noon e tutti gli altri modi per accumularne.</p>
-
-          <h3>Sblocchi chiave</h3>
-          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem">
-            <li><strong>Trade Post</strong> — aperte di nuovo per il combattimento</li>
-            <li><strong>Warzone Outposts</strong> — terza e ultima conquista venerdì (giorno 5)</li>
-            <li><strong>Golden Palace</strong> — si riapre sabato (giorno 6) per l'ultima conquista</li>
-            <li>Ultime azioni <strong>CrystalGold Tycoon</strong> disponibili</li>
-          </ul>
+          <p data-i18n="guide_w7_intro"></p>
+          <h3 data-i18n="guide_w7_unlocks_title">Sblocchi chiave</h3>
+          <ul style="color:var(--text);line-height:1.8;padding-left:1.4rem" data-i18n-html="guide_w7_unlocks"></ul>
         </div>
 
-        <!-- SETTIMANA 8 DETTAGLIO -->
+        <!-- SETTIMANA 8 -->
         <div class="guide-section">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
-            <div style="background:#ff9800;color:#000;font-weight:800;font-size:0.72rem;letter-spacing:0.15em;padding:0.3rem 0.9rem;border-radius:20px">SETTIMANA 8</div>
-            <h2 style="margin:0;border:none;padding:0">Settlement & Transfer Surge</h2>
+            <div class="week-badge" style="background:#ff9800;color:#000" data-i18n="w8_badge">SETTIMANA 8</div>
+            <h2 style="margin:0;border:none;padding:0" data-i18n="w8_title">Settlement &amp; Transfer Surge</h2>
           </div>
-          <p>La settimana 8 conclude la Stagione 5. Avrai il punto di insediamento e la sintesi della stagione. Puoi assegnare ricompense ai membri dell'alleanza e usare il CrystalGold rimasto nel negozio CrystalGold.</p>
-          <p>Il <strong>Grand Nexus</strong> (Campidoglio) sarà disponibile di nuovo mercoledì — questa volta senza bisogno di terra adiacente per partecipare alla conquista.</p>
-          <p>Oltre alla chiusura della stagione, inizierà l'evento <strong>Transfer Surge</strong>. Ricorda: questa è l'ultima settimana in cui hai accesso agli edifici stagionali — aggiornali il più possibile per ottenere Professional XP prima che scompaiano.</p>
-
+          <p data-i18n="guide_w8_intro"></p>
+          <p data-i18n-html="guide_w8_nexus"></p>
+          <p data-i18n-html="guide_w8_surge"></p>
           <div class="tip-box">
-            <div class="tip-icon">🦔</div>
+            <div class="tip-icon">🏆</div>
             <div>
-              <span class="tip-label">CptHedgehog Tips — Conclusione</span>
-              <p>Buona fortuna, Comandante, e benvenuto nella Golden Wasteland! Questa guida viene aggiornata continuamente man mano che vengono scoperte nuove strategie. Torna ogni settimana per gli ultimi aggiornamenti.</p>
+              <span class="tip-label" data-i18n="guide_w8_tip_label">Conclusione</span>
+              <p data-i18n="guide_w8_tip"></p>
             </div>
           </div>
         </div>
 
         <div style="text-align:center;padding:2rem 0;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--line);margin-top:2rem">
-          <p>Guida aggiornata continuamente man mano che vengono scoperte nuove strategie.<br>Night Commando NGC · Stagione 5 Wild West</p>
+          <p data-i18n="guide_footer">Guida aggiornata continuamente man mano che vengono scoperte nuove strategie.</p>
+          <p data-i18n="guide_footer2">Night Commando Fiodena · Stagione 5 Wild West</p>
         </div>
 
       </div>
     </main>
 
+    <script src="../assets/translations.js"></script>
     <script src="../assets/app.js"></script>
   </body>
 </html>
