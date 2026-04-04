@@ -165,17 +165,30 @@ code { font-family: monospace; }
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.35);
 }
 
-.announcement-banner {
-  display: flex;
-  gap: 1rem;
+.back-bar {
+  padding: 0.6rem 0 0;
+}
+
+.back-btn {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 1rem 1.25rem;
-  border-radius: 1rem;
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-  color: #1a1a1a;
-  border: 2px solid #ffb74d;
-  box-shadow: 0 5px 20px rgba(255, 152, 0, 0.3);
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  background: var(--panel-2);
 }
 
 .home-command-center {
@@ -1150,6 +1163,58 @@ body.dark .planner-svg {
 
   .simulation-plan-metrics {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.7rem 0;
+  }
+
+  .main-nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+  }
+
+  .main-nav a {
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.5rem;
+    background: var(--panel-2);
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .home-header {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .alliance-seal {
+    width: 80px;
+    height: 80px;
+    font-size: 1.8rem;
+  }
+
+  .alliance-tag {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .tool-layout {
+    padding: 1rem 0;
+  }
+
+  .section {
+    padding: 1.2rem 0;
   }
 }
 
