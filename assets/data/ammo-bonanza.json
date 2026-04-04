@@ -1,0 +1,34 @@
+{
+  "extractedFrom": "public Next.js ammo bonanza page bundle",
+  "sourcePath": "/_next/static/chunks/app/events/ammo-bonanza/page-64509b4824f86235.js",
+  "extractedAt": "2026-04-03T18:11:05.668Z",
+  "simulationRuns": 5000,
+  "maxLevelForCurrentAmmo": 100,
+  "targetAttemptsByRemainder": {
+    "0": 11,
+    "1": 6,
+    "2": 7,
+    "3": 9,
+    "4": 6
+  },
+  "earlyAttemptWeights": [
+    {
+      "maxAttempt": 3,
+      "weight": 1
+    },
+    {
+      "maxAttempt": 6,
+      "weight": 5
+    },
+    {
+      "maxAttempt": 9,
+      "weight": 10
+    },
+    {
+      "maxAttempt": null,
+      "weight": 30
+    }
+  ],
+  "depletionBonusPerRemainingPrize": 10,
+  "poolSize": 11
+}

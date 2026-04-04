@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Night Commando Clone Analysis</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="/">Night Commando</a>
+        <nav class="main-nav">
+          <a href="/">Home</a>
+          <a href="/events/ammo-bonanza/">Ammo Bonanza</a>
+          <a href="/servers/">Servers</a>
+          <a href="/maps/planner/">Planner</a>
+        </nav>
+        <button id="theme-toggle" class="ghost-button" type="button">Tema</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="wrap section home-topbar">
+        <div class="lang-cluster">
+          <button class="lang-pill active" type="button">EN</button>
+          <button class="lang-pill" type="button">IT</button>
+          <button class="lang-pill" type="button">FR</button>
+          <button class="lang-pill" type="button">DE</button>
+        </div>
+      </section>
+
+      <section class="wrap section">
+        <div class="announcement-banner">
+          <strong>Important Announcement</strong>
+          <span>Night Commando styling applied to the reverse-engineered study clone.</span>
+        </div>
+      </section>
+
+      <section class="wrap home-command-center">
+        <div class="home-shell">
+          <div class="home-header">
+            <div class="alliance-seal">NGC</div>
+            <p class="eyebrow">Alliance Command Center</p>
+            <h1>Night Commando Hub Clone</h1>
+            <p class="subtitle">Reverse-engineered structure with NGC command styling.</p>
+            <div class="alliance-tag">SERVER #1105 · COMMAND READY</div>
+          </div>
+
+          <div class="cards-container">
+            <a class="card-link" href="/maps/planner/">
+              <article class="command-card planner-card">
+                <div class="card-icon">⌘</div>
+                <h2 class="card-title">Planner</h2>
+                <p class="card-description">
+                  Tactical SVG grid with local persistence, palette placement and command-center visuals.
+                </p>
+                <span class="card-button">Open Planner</span>
+              </article>
+            </a>
+
+            <a class="card-link" href="/servers/">
+              <article class="command-card stats-card">
+                <div class="card-icon">▣</div>
+                <h2 class="card-title">Server Overview</h2>
+                <p class="card-description">
+                  Filterable server list built like the observed bundle: dataset local, sort client-side, prefs saved.
+                </p>
+                <span class="card-button">Open Overview</span>
+              </article>
+            </a>
+
+            <a class="card-link" href="/events/ammo-bonanza/">
+              <article class="command-card sim-card">
+                <div class="card-icon">◎</div>
+                <h2 class="card-title">Ammo Bonanza</h2>
+                <p class="card-description">
+                  Browser simulation with 5000 runs, distribution histogram and no backend dependency.
+                </p>
+                <span class="card-button">Run Simulation</span>
+              </article>
+            </a>
+          </div>
+
+          <div class="home-readout">
+            <div class="readout-card">
+              <span class="readout-label">Observed Stack</span>
+              <strong>Next.js · Vercel · Cloudflare</strong>
+            </div>
+            <div class="readout-card">
+              <span class="readout-label">Actual Runtime Pattern</span>
+              <strong>Mostly client-side logic and bundled data</strong>
+            </div>
+            <div class="readout-card">
+              <span class="readout-label">Analysis File</span>
+              <strong><a href="/ANALISI.md">Open Technical Readout</a></strong>
+            </div>
+          </div>
+
+          <footer class="home-footer">
+            <p>Alliance Hub v2.0 · NGC visual language applied to reverse-engineered study clone</p>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

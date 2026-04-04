@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planner Clone</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body data-page="planner">
+    <header class="site-header">
+      <div class="wrap nav">
+        <a class="brand" href="/">Night Commando</a>
+        <nav class="main-nav">
+          <a href="/">Home</a>
+          <a href="/events/ammo-bonanza/">Ammo Bonanza</a>
+          <a href="/servers/">Servers</a>
+          <a href="/maps/planner/" aria-current="page">Planner</a>
+        </nav>
+        <button id="theme-toggle" class="ghost-button" type="button">Tema</button>
+      </div>
+    </header>
+
+    <main class="planner-shell">
+      <aside class="planner-sidebar card">
+        <h1>Season 5 Map</h1>
+        <p class="muted">
+          Viewer territoriale Season 5 con coordinate reali estratte dal bundle pubblico della mappa interattiva.
+        </p>
+
+        <p id="planner-meta" class="small muted">Caricamento territori Season 5...</p>
+
+        <div class="palette-group">
+          <p class="palette-title">Grid</p>
+          <label class="field">
+            <span>Active grid</span>
+            <select id="planner-grid-select"></select>
+          </label>
+          <div class="button-row">
+            <button id="planner-grid-new" class="ghost-button" type="button">New grid</button>
+            <button id="planner-grid-duplicate" class="ghost-button" type="button">Duplicate</button>
+            <button id="planner-grid-delete" class="ghost-button" type="button">Delete</button>
+          </div>
+          <div class="button-row">
+            <button id="planner-grid-export" class="ghost-button" type="button">Export grids</button>
+            <button id="planner-grid-import" class="ghost-button" type="button">Import grids</button>
+          </div>
+          <input id="planner-grid-import-file" type="file" accept="application/json,.json" hidden />
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Alliances</p>
+          <label class="field">
+            <span>Alliance name</span>
+            <input id="planner-alliance-name" type="text" placeholder="NGC Main" />
+          </label>
+          <div class="button-row">
+            <button id="planner-alliance-create" class="secondary-button" type="button">Create alliance</button>
+            <button id="planner-alliance-clear" class="ghost-button" type="button">Clear all</button>
+          </div>
+          <div id="planner-alliance-list" class="route-list">
+            <div class="route-empty">No alliances yet.</div>
+          </div>
+          <div id="planner-alliance-stats" class="detail-card">
+            <strong>No alliance selected</strong>
+            <span class="palette-note">Select an alliance to inspect limits and resources.</span>
+          </div>
+          <button id="planner-set-start" class="ghost-button" type="button">Set selected area as start</button>
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Map Settings</p>
+          <label class="toggle-row"><input id="planner-show-strongholds" type="checkbox" /> Show stronghold labels</label>
+          <label class="toggle-row"><input id="planner-show-cities" type="checkbox" checked /> Show city labels</label>
+          <label class="toggle-row"><input id="planner-show-buffs" type="checkbox" /> Show buff colors</label>
+          <label class="toggle-row"><input id="planner-path-mode" type="checkbox" /> Proposed path mode</label>
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Technical Filters</p>
+          <label class="field">
+            <span>Category</span>
+            <select id="planner-category">
+              <option value="">All visible</option>
+              <option value="capital">Capital</option>
+              <option value="nexus">Nexus</option>
+              <option value="outpost">Outposts</option>
+              <option value="trade_post">Trade posts</option>
+              <option value="crystal_mine">Crystal mines</option>
+              <option value="regional_zone">Regional zones</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Min level</span>
+            <select id="planner-level-min">
+              <option value="0">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+              <option value="6">6+</option>
+              <option value="7">7+</option>
+              <option value="8">8+</option>
+              <option value="9">9+</option>
+              <option value="10">10+</option>
+              <option value="11">11+</option>
+              <option value="12">12+</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Planner</p>
+          <label class="field">
+            <span>Warzone sector</span>
+            <select id="planner-warzone-sector">
+              <option value="1">Warzone 1</option>
+              <option value="2">Warzone 2</option>
+              <option value="3">Warzone 3</option>
+              <option value="4">Warzone 4</option>
+              <option value="5">Warzone 5</option>
+              <option value="6" selected>Warzone 6</option>
+              <option value="7">Warzone 7</option>
+              <option value="8">Warzone 8</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Alliance rank</span>
+            <select id="planner-alliance-rank">
+              <option value="elite">Elite alliance</option>
+              <option value="contender">Contender alliance</option>
+              <option value="rising">Rising alliance</option>
+            </select>
+          </label>
+          <div class="button-row">
+            <button id="planner-seed-warzone" class="secondary-button" type="button">Preset 10 alliances</button>
+            <button id="planner-simulate-route" class="primary-button" type="button">Simulate conquest</button>
+            <button id="planner-clear-path" class="ghost-button" type="button">Clear path</button>
+          </div>
+          <div id="planner-simulation-note" class="detail-card">
+            <strong>Season 5 conquest rules</strong>
+            <span class="palette-note">Golden Palace attack windows: Saturday of Week 5, 6 and 7 at 13:00 server time.</span>
+            <span class="palette-note">Attack requires adjacent land through a lv 10 Bank Stronghold or lv 10 City.</span>
+            <span class="palette-note">4 cannons accelerate capture or bombard defenders. Golden Palace awards 1.8m influence.</span>
+          </div>
+          <div id="planner-solution-list" class="route-list">
+            <div class="route-empty">No simulated plans yet.</div>
+          </div>
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Selected Area</p>
+          <div id="planner-selection" class="detail-card">
+            <strong>No area selected</strong>
+            <span class="palette-note">Click a tile to inspect it.</span>
+          </div>
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Conquest Route</p>
+          <div id="planner-route" class="route-list">
+            <div class="route-empty">No path steps yet.</div>
+          </div>
+        </div>
+
+        <div class="palette-group">
+          <p class="palette-title">Day-by-Day</p>
+          <div id="planner-timeline" class="route-list">
+            <div class="route-empty">No day-by-day plan yet.</div>
+          </div>
+        </div>
+
+        <div class="sidebar-actions">
+          <button id="planner-clear" class="secondary-button" type="button">Reset view</button>
+          <button id="planner-center" class="ghost-button" type="button">Top</button>
+        </div>
+
+        <p class="small muted">
+          Dati sorgente in <code>assets/data/season-5-strategic-poi.json</code> e
+          <code>assets/data/season-5-poi-points.json</code>. Stato frontend riallineato alla struttura reale del
+          sito: <code>grids</code>, <code>alliances</code>, <code>selectedAllianceId</code> e
+          <code>pathSteps</code>.
+        </p>
+      </aside>
+
+      <section class="planner-stage">
+        <div class="planner-toolbar">
+          <span id="planner-status">Season 5 POI map</span>
+          <div class="planner-day-legend">
+            <span class="legend-pill day-1">D1</span>
+            <span class="legend-pill day-2">D2</span>
+            <span class="legend-pill day-3">D3</span>
+            <span class="legend-pill day-4">D4</span>
+            <span class="legend-pill day-5">D5+</span>
+          </div>
+        </div>
+        <div class="planner-board card">
+          <svg id="planner-svg" viewBox="0 0 3000 3000" class="planner-svg" aria-label="Season 5 territory map">
+            <g id="grid-layer"></g>
+            <g id="element-layer"></g>
+            <g id="label-layer"></g>
+          </svg>
+        </div>
+      </section>
+    </main>
+
+    <script src="/assets/app.js"></script>
+    <script src="/assets/planner.js"></script>
+  </body>
+</html>

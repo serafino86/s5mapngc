@@ -1,0 +1,859 @@
+{
+  "extractedFrom": "public Next.js planner bundle",
+  "sourcePath": "/_next/static/chunks/1832-82ecb6e79ed60e32.js",
+  "extractedAt": "2026-04-03T18:11:05.621Z",
+  "seasons": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5"
+  ],
+  "definitions": [
+    {
+      "id": "base",
+      "name": "Commander Base",
+      "width": 3,
+      "height": 3,
+      "image": "/images/planner/headquarters.png",
+      "color": "#497d00",
+      "allowsText": true,
+      "category": "general"
+    },
+    {
+      "id": "mine",
+      "name": "Resource Mine",
+      "width": 1,
+      "height": 1,
+      "image": "/images/planner/iron-mine.png",
+      "color": "#DC2626",
+      "category": "general"
+    },
+    {
+      "id": "task",
+      "name": "Secret Task",
+      "width": 3,
+      "height": 3,
+      "image": "/images/planner/secret-task.png",
+      "color": "#DC2626",
+      "imageScale": 0.6,
+      "category": "general"
+    },
+    {
+      "id": "alliance-event",
+      "name": "Alliance Exercise",
+      "width": 3,
+      "height": 3,
+      "image": "/images/planner/alliance-event.png",
+      "color": "#DC2626",
+      "imageScale": 1,
+      "category": "general"
+    },
+    {
+      "id": "alliance-furnace-s2",
+      "name": "Alliance Furnace",
+      "width": 5,
+      "height": 5,
+      "image": "",
+      "color": "#DC2626",
+      "imageScale": 1,
+      "seasons": [
+        "S2"
+      ],
+      "category": "buildings"
+    },
+    {
+      "id": "alliance-center-s3",
+      "name": "Alliance Center",
+      "width": 9,
+      "height": 9,
+      "image": "",
+      "color": "#DC2626",
+      "imageScale": 1,
+      "seasons": [
+        "S3"
+      ],
+      "category": "buildings"
+    },
+    {
+      "id": "alliance-center-s4",
+      "name": "Alliance Center",
+      "width": 9,
+      "height": 9,
+      "image": "/images/planner/alliance-center-s4.png",
+      "color": "#C5E0FB",
+      "imageScale": 1,
+      "autoAddInfluence": {
+        "width": 41,
+        "height": 41
+      },
+      "seasons": [
+        "S4"
+      ],
+      "category": "buildings"
+    },
+    {
+      "id": "city-2-s2",
+      "name": "City (L)",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 21,
+        "height": 21
+      },
+      "category": "buildings",
+      "seasons": [
+        "S2"
+      ]
+    },
+    {
+      "id": "city-s1",
+      "name": "City (L)",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 19,
+        "height": 19
+      },
+      "category": "buildings",
+      "seasons": [
+        "S1"
+      ]
+    },
+    {
+      "id": "city-3-s2",
+      "name": "City (L)",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 17,
+        "height": 17
+      },
+      "category": "buildings",
+      "seasons": [
+        "S2"
+      ]
+    },
+    {
+      "id": "city",
+      "name": "City",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 15,
+        "height": 15
+      },
+      "category": "buildings"
+    },
+    {
+      "id": "city-s3",
+      "name": "City (M)",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 13,
+        "height": 13
+      },
+      "category": "buildings",
+      "seasons": [
+        "S3"
+      ]
+    },
+    {
+      "id": "city-s2",
+      "name": "City (S)",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 11,
+        "height": 11
+      },
+      "category": "buildings",
+      "seasons": [
+        "S2"
+      ]
+    },
+    {
+      "id": "digsite",
+      "name": "Stronghold",
+      "width": 5,
+      "height": 5,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 13,
+        "height": 13
+      },
+      "category": "buildings"
+    },
+    {
+      "id": "digsite-s3",
+      "name": "Stronghold (M)",
+      "width": 5,
+      "height": 5,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 11,
+        "height": 11
+      },
+      "category": "buildings",
+      "seasons": [
+        "S3"
+      ]
+    },
+    {
+      "id": "digsite-s5",
+      "name": "Bank Stronghold",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 15,
+        "height": 15
+      },
+      "category": "buildings",
+      "seasons": [
+        "S5"
+      ]
+    },
+    {
+      "id": "trade-post",
+      "name": "Trade Post",
+      "width": 5,
+      "height": 5,
+      "image": "",
+      "color": "#2563eb",
+      "autoAddContamination": {
+        "width": 17,
+        "height": 17
+      },
+      "seasons": [
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "category": "buildings"
+    },
+    {
+      "id": "capitol",
+      "name": "Capitol",
+      "width": 21,
+      "height": 21,
+      "image": "",
+      "color": "#DC2626",
+      "imageScale": 0.5,
+      "autoAddContamination": {
+        "width": 100,
+        "height": 100
+      },
+      "category": "buildings"
+    },
+    {
+      "id": "outpost",
+      "name": "Outpost",
+      "width": 7,
+      "height": 7,
+      "image": "",
+      "color": "#DC2626",
+      "autoAddContamination": {
+        "width": 50,
+        "height": 50
+      },
+      "category": "buildings",
+      "seasons": [
+        "S5"
+      ]
+    },
+    {
+      "id": "warlord-missile-s3",
+      "name": "Warlord Missile Area",
+      "width": 35,
+      "height": 35,
+      "image": "",
+      "color": "#A0522D",
+      "canOverlap": true,
+      "isContaminatedLand": true,
+      "seasons": [
+        "S3",
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "warlord-missile-s2",
+      "name": "Warlord Missile Area (S2)",
+      "width": 25,
+      "height": 25,
+      "image": "",
+      "color": "#A0522D",
+      "canOverlap": true,
+      "isContaminatedLand": true,
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "tesla-coil-s4",
+      "name": "Tesla Coil (S4)",
+      "width": 21,
+      "height": 21,
+      "image": "",
+      "color": "#c4e2ff",
+      "canOverlap": true,
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "siege-banner",
+      "name": "Siege Banner (Engineer)",
+      "width": 1,
+      "height": 1,
+      "image": "/images/planner/siege-banner.png",
+      "color": "#C5E0FB",
+      "allowsText": true,
+      "autoAddInfluence": {
+        "width": 21,
+        "height": 21
+      },
+      "category": "environment"
+    },
+    {
+      "id": "charge-banner",
+      "name": "Charge Banner (War Leader)",
+      "width": 1,
+      "height": 1,
+      "image": "/images/planner/charge-banner.png",
+      "color": "#E66767",
+      "allowsText": true,
+      "autoAddInfluence": {
+        "width": 21,
+        "height": 21
+      },
+      "category": "environment"
+    },
+    {
+      "id": "mountain-s2",
+      "name": "Mountain (S)",
+      "width": 9,
+      "height": 9,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-2-s2",
+      "name": "Mountain (M)",
+      "width": 10,
+      "height": 11,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "lake-s2",
+      "name": "Lake",
+      "width": 7,
+      "height": 10,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "lake-2-s2",
+      "name": "Lake",
+      "width": 10,
+      "height": 9,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-lake-s2",
+      "name": "Mountains & Lake",
+      "width": 15,
+      "height": 18,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-lake-2-s2",
+      "name": "Mountains & Lake",
+      "width": 16,
+      "height": 17,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S2"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "lake-s3",
+      "name": "Lake",
+      "width": 14,
+      "height": 13,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-s3",
+      "name": "Mountain",
+      "width": 14,
+      "height": 14,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-2-s3",
+      "name": "Mountain",
+      "width": 14,
+      "height": 15,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-3-s3",
+      "name": "Mountain (M)",
+      "width": 10,
+      "height": 11,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-4-s3",
+      "name": "Mountain (L)",
+      "width": 11,
+      "height": 9,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-5-s3",
+      "name": "Mountain (L)",
+      "width": 16,
+      "height": 15,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-4-s3",
+      "name": "Mountain (L)",
+      "width": 14,
+      "height": 16,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "rocks-2-s3",
+      "name": "Rocky Area (S)",
+      "width": 10,
+      "height": 10,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "rocks-s3",
+      "name": "Rocky Area",
+      "width": 14,
+      "height": 13,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "sphinx-s3",
+      "name": "Sphinx Statue",
+      "width": 6,
+      "height": 5,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S3"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-s4",
+      "name": "Mountain (M)",
+      "width": 17,
+      "height": 18,
+      "image": "/images/planner/mountain-s4.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-2-s4",
+      "name": "Mountain (L)",
+      "width": 17,
+      "height": 19,
+      "image": "/images/planner/mountain-s4.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "lake-s4",
+      "name": "Lake",
+      "width": 11,
+      "height": 9,
+      "image": "/images/planner/lake-s4.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountains-s4",
+      "name": "Mountain Group",
+      "width": 28,
+      "height": 27,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "holy-mountain-s4",
+      "name": "Holy Mountain",
+      "width": 11,
+      "height": 11,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment",
+      "autoAddContamination": {
+        "width": 17,
+        "height": 17
+      }
+    },
+    {
+      "id": "divine-tree-s4",
+      "name": "Divine Tree",
+      "width": 9,
+      "height": 9,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment",
+      "autoAddContamination": {
+        "width": 17,
+        "height": 17
+      }
+    },
+    {
+      "id": "sushi-restaurant-s4",
+      "name": "Sushi Restaurant",
+      "width": 5,
+      "height": 5,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "statue-s4",
+      "name": "Samurai Statue",
+      "width": 6,
+      "height": 4,
+      "image": "",
+      "color": "#DC2626",
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mine-s5",
+      "name": "Abandoned Mine",
+      "width": 6,
+      "height": 5,
+      "image": "/images/planner/season-5/abandoned-mine.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "tower-s5",
+      "name": "Broken Tower",
+      "width": 5,
+      "height": 5,
+      "image": "/images/planner/season-5/broken-tower.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "truck-s5",
+      "name": "Old Truck",
+      "width": 5,
+      "height": 5,
+      "image": "/images/planner/season-5/old-truck.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "truck-2-s5",
+      "name": "Old Truck",
+      "width": 5,
+      "height": 6,
+      "image": "/images/planner/season-5/old-truck-2.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "car-s5",
+      "name": "Old Car",
+      "width": 4,
+      "height": 4,
+      "image": "/images/planner/season-5/old-car.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "sign-s5",
+      "name": "Sign Post",
+      "width": 3,
+      "height": 2,
+      "image": "/images/planner/season-5/sign-post.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "sign-2-s5",
+      "name": "Sign Post (L)",
+      "width": 3,
+      "height": 3,
+      "image": "/images/planner/season-5/sign-post-2.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-s5",
+      "name": "Mountain (L)",
+      "width": 13,
+      "height": 10,
+      "image": "/images/planner/season-5/mountain.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-2-s5",
+      "name": "Mountain (L)",
+      "width": 12,
+      "height": 12,
+      "image": "/images/planner/season-5/mountain-2.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-3-s5",
+      "name": "Mountain (L)",
+      "width": 13,
+      "height": 11,
+      "image": "/images/planner/season-5/mountain-3.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "mountain-4-s5",
+      "name": "Mountain (S)",
+      "width": 10,
+      "height": 8,
+      "image": "/images/planner/season-5/mountain-4.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "train-tracks-horizontal-s5",
+      "name": "Train Tracks (Horizontal)",
+      "width": 9,
+      "height": 3,
+      "image": "/images/planner/season-5/train-tracks-horizontal.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "imageScale": 1,
+      "category": "environment"
+    },
+    {
+      "id": "train-tracks-vertical-s5",
+      "name": "Train Tracks (Vertical)",
+      "width": 3,
+      "height": 9,
+      "image": "/images/planner/season-5/train-tracks-vertical.png",
+      "color": "#DC2626",
+      "seasons": [
+        "S5"
+      ],
+      "imageScale": 1,
+      "category": "environment"
+    },
+    {
+      "id": "ligthouse-l1-s4",
+      "name": "Lighthouse (L1)",
+      "width": 5,
+      "height": 5,
+      "image": "",
+      "color": "#fbfc9f",
+      "canOverlap": true,
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "ligthouse-l2-s4",
+      "name": "Lighthouse (L2)",
+      "width": 11,
+      "height": 11,
+      "image": "",
+      "color": "#fbfc9f",
+      "canOverlap": true,
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "ligthouse-l3-s4",
+      "name": "Lighthouse (L3)",
+      "width": 17,
+      "height": 17,
+      "image": "",
+      "color": "#fbfc9f",
+      "canOverlap": true,
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    },
+    {
+      "id": "ligthouse-l4-s4",
+      "name": "Lighthouse (L4)",
+      "width": 23,
+      "height": 23,
+      "image": "",
+      "color": "#fbfc9f",
+      "canOverlap": true,
+      "seasons": [
+        "S4"
+      ],
+      "category": "environment"
+    }
+  ]
+}
