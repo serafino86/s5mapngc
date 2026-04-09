@@ -862,6 +862,12 @@ textarea {
   border-color: rgba(255, 152, 0, 0.28);
 }
 
+.simulation-metric--season {
+  background: rgba(100, 181, 246, 0.12);
+  border-color: rgba(100, 181, 246, 0.35);
+  font-weight: 600;
+}
+
 .planner-stage {
   display: grid;
   gap: 0.75rem;

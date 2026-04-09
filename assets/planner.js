@@ -1963,6 +1963,7 @@
 
     var bankRecaptures = 0;
     var cityRecaptures = 0;
+    var recaptureInfluence = 0;
     var events = [];
 
     Object.keys(firstCaptureDay).forEach(function (id) {
@@ -1970,10 +1971,12 @@
       if (!point) return;
       var captureDay = firstCaptureDay[id];
       var expiry = point.territoryKind === "bank" ? BANK_EXPIRY : CITY_EXPIRY;
+      var pointInf = (point.resources && point.resources.influence) || 0;
       var day = captureDay + expiry;
       while (day <= SEASON_DAYS) {
         if (point.territoryKind === "bank") bankRecaptures += 1;
         else cityRecaptures += 1;
+        recaptureInfluence += pointInf;
         events.push({ day: day, id: id, kind: point.territoryKind, name: pointName(point) });
         day += expiry;
       }
@@ -1987,6 +1990,7 @@
     return {
       bankRecaptures: bankRecaptures,
       cityRecaptures: cityRecaptures,
+      recaptureInfluence: recaptureInfluence,
       totalSeasonFightDays: Object.keys(fightDaysSet).length,
       events: events
     };
@@ -2132,7 +2136,8 @@
           '<div class="simulation-metric">Territories: ' + plan.metrics.steps + "</div>" +
           '<div class="simulation-metric">Total days: ' + plan.metrics.totalDays + "</div>" +
           '<div class="simulation-metric">War days used: ' + plan.metrics.warDaysUsed + "</div>" +
-          '<div class="simulation-metric">Influence: ' + plan.metrics.influence + "</div>" +
+          '<div class="simulation-metric simulation-metric--season">Season influence (8 wks): ' + (plan.metrics.seasonInfluence || plan.metrics.influence) + "</div>" +
+          '<div class="simulation-metric">Initial capture influence: ' + plan.metrics.influence + "</div>" +
           '<div class="simulation-metric">CrystalGold/h: ' + plan.metrics.crystalGold + "</div>" +
           '<div class="simulation-metric">Cities: ' + plan.metrics.cities + "</div>" +
           '<div class="simulation-metric">Banks: ' + plan.metrics.banks + "</div>" +
@@ -2250,6 +2255,16 @@
         plan.metrics.bankRecaptures = maintenance.bankRecaptures;
         plan.metrics.cityRecaptures = maintenance.cityRecaptures;
         plan.metrics.totalSeasonFightDays = maintenance.totalSeasonFightDays;
+        // Season-total influence: initial captures + recaptures over 56 days
+        // GP and outpost have 3 battle windows (Weeks 5-7); count additional 2 captures if on route
+        var gpPoint = allPoints.filter(function (p) { return p.category === "palace"; })[0];
+        var gpOnRoute = gpPoint && routeIds.indexOf(gpPoint.id) !== -1;
+        var gpSeasonBonus = gpOnRoute ? (gpPoint.resources && gpPoint.resources.influence || 1800000) * 2 : 0;
+        var outpostOnRoute = allPoints.some(function (p) {
+          return p.category === "outpost" && routeIds.indexOf(p.id) !== -1;
+        });
+        var outpostSeasonBonus = outpostOnRoute ? 100000 * 2 : 0;
+        plan.metrics.seasonInfluence = resourceTotals.influence + maintenance.recaptureInfluence + gpSeasonBonus + outpostSeasonBonus;
 
         plan.summary =
           profile.label + " via " + pointName(candidate.entry) + " Lv." + candidate.entry.level +
@@ -2335,6 +2350,8 @@
       plan.metrics.bankRecaptures = outpostMaintenance.bankRecaptures;
       plan.metrics.cityRecaptures = outpostMaintenance.cityRecaptures;
       plan.metrics.totalSeasonFightDays = outpostMaintenance.totalSeasonFightDays;
+      // Outpost: 3 attack windows, count all 3 captures (first is in influence already via outpostBonus base)
+      plan.metrics.seasonInfluence = resourceTotals.influence + outpostMaintenance.recaptureInfluence + outpostBonus * 3;
       plan.summary = "Outpost Raid via " + pointName(candidate.entry) + " Lv." + candidate.entry.level +
         " → " + outpostLabel + " (+100k influence on Fri/Week5-7)" +
         " · " + categoryCounts.banks + " banks and " + categoryCounts.cities + " cities on the route" +
