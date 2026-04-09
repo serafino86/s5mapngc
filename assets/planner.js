@@ -31,7 +31,13 @@
     battle: {
       slotsPerDay: 3,
       slotDurationHours: 1,
-      safeTimeHours: 15
+      safeTimeHours: 15,
+      immuneWindowHours: 7
+    },
+    territory: {
+      bankExpiryDays: 3,
+      cityExpiryDays: 6,
+      tradePostAdjacency: false
     },
     limits: {
       maxCities: 8,
@@ -1227,7 +1233,10 @@
       "<span class=\"palette-note\">Warzone Outpost attack window: <strong>Friday</strong> of Week 5, 6 and 7 – 12h post daily reset. All 8 outposts open simultaneously. Each outpost grants <strong>100k influence</strong> to every alliance in the war zone.</span>" +
       "<span class=\"palette-note\">Golden Palace attack window: <strong>Saturday</strong> of Week 5, 6 and 7 at 13:00 server time. Requires adjacent land through a lv 10 Bank or lv 10 City. GP awards 1.8m influence.</span>" +
       "<span class=\"palette-note\">4 cardinal outposts (N/S/E/W of GP) also serve as cannon positions during the GP siege.</span>" +
-      "<span class=\"palette-note\">Dual strategy: Alliance A takes GP + 4 lv10 cities; Alliance B takes all 8 outposts → both qualify for challenge rewards.</span>";
+      "<span class=\"palette-note\">Dual strategy: Alliance A takes GP + 4 lv10 cities; Alliance B takes all 8 outposts → both qualify for challenge rewards.</span>" +
+      "<span class=\"palette-note\">Territory timers: <strong>Banks expire every 3 days</strong> (re-capture required); <strong>Cities expire every 6 days</strong>. Defending a city only extends ownership one window — attacker wins it for 6 days with a single victory.</span>" +
+      "<span class=\"palette-note\">Trade posts do NOT count as territory for adjacency purposes. Alliance immunity: up to 15h/day — only 2 effective attack windows per 24h remain.</span>" +
+      "<span class=\"palette-note\">⚠ This simulation does not yet model bank/city expiry cycles. Treat day counts as minimum conquest time, not total season plan.</span>";
   }
 
   function resourceTotalsForPath(routeIds) {

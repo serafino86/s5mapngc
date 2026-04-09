@@ -114,19 +114,69 @@ Ogni piano candidato mostra:
 
 Ogni piano ha un pulsante `Apply` per essere applicato manualmente alla grid dell'alleanza selezionata.
 
-## Cosa si sta facendo ora
+## Aggiornamento 2026-04-09: Fix meccaniche reali da video
 
-Il simulatore viene raffinato per rendere il confronto umano piu` utile.
+### Fonti usate
 
-Direzioni attive:
+- Transcript video EN (outpost conquest rules)
+- Guida video DE (Season 5 overview)
+- Transcript video EN "season wrap-up" (QB18)
+- Transcript video EN "first look Season 5" (QB18)
 
-- penalita` per marcia lunga;
-- valutazione esposizione in contaminated land;
-- penalita` su cannoni piu` contesi;
-- valore del lato d'ingresso verso il Golden Palace;
-- penalita` sui percorsi inefficienti.
+### Regole reali confermate
 
-L'obiettivo e` evitare una proposta unica opaca e mostrare invece poche varianti leggibili, comparabili e difendibili.
+**Outpost (8 Warzone Outpost):**
+- Ogni server ha il proprio outpost nel ring interno attorno al Golden Palace
+- Attacco: Venerdi` di Week 5, 6, 7 — 12h dopo il daily reset
+- Tutti gli 8 outpost aprono in simultanea
+- Ogni outpost conquistato da 100k influence a TUTTE le alleanze della war zone
+- Per attaccare serve terra adiacente (bank o city che tocca l'outpost)
+- Tutti i membri del war zone possono partecipare all'attacco e alla difesa
+- L'alleanza con piu` contributo conquista e controlla l'outpost
+- Se non viene conquistato al 100%, il proprietario lo mantiene
+
+**Golden Palace:**
+- Attacco: Sabato di Week 5, 6, 7 — 13:00 server time
+- Richiede terra adiacente tramite lv10 Bank o lv10 City
+- 4 outpost cardinali (N/S/E/W) funzionano anche come posizioni cannone durante l'assedio
+- Valore: 1.8M influence
+
+**Strategia duale:**
+- Alleanza A: GP + 4 citta` lv10 → challenge rewards
+- Alleanza B: tutti gli 8 outpost (800k influence totale) → challenge rewards
+- Le due strategie non si escludono a vicenda e possono essere coordinate
+
+**Scadenza territori:**
+- **Bank**: scadono ogni **3 giorni** — servono riconquiste periodiche
+- **City**: scadono ogni **6 giorni**
+- Difendere una citta` la protegge solo per UNA finestra — chi attacca e vince la tiene 6 giorni
+- Le bank sono relativamente piu` facili da conquistare (100% capture in una battaglia = 3 giorni)
+
+**Timing di battaglia:**
+- 3 finestre di battaglia al giorno
+- Ogni alleanza puo` impostare fino a 15 ore consecutive di immunita`
+- Di fatto restano ~2 finestre di attacco utili per 24h
+
+**Trade post:**
+- NON contano come territorio per l'adiacenza
+- 3 battaglie totali per i trade post nella season
+- 3 battaglie totali per il Golden Palace
+
+### Fix applicati al planner (commit deb0b89)
+
+- Aggiunto `influence: 100000` a tutti gli 8 outpost in `season-5-poi-points.json`
+- Rimosso double-count dell'influence del GP in `simulateConquestPath`
+- Corretto timing nella nota (Venerdi` outpost, Sabato GP)
+- Aggiunto profilo simulazione "Outpost Raid" per tutti i ranghi
+- Aggiunta funzione `outpostAdjacentEntries()` per trovare bank adiacenti agli outpost
+- Aggiunto piano Outpost Raid con bonus 100k influence
+
+### Fix applicati al planner (commit successivo — 2026-04-09)
+
+- Aggiunto `territory.bankExpiryDays: 3` e `cityExpiryDays: 6` in SEASON_CONFIG
+- Aggiunto `battle.immuneWindowHours: 7` (finestra effettiva, non max)
+- Aggiornata nota simulazione con info su scadenza bank/city e trade post
+- Aggiornato worklog con tutte le regole reali confermate
 
 ## Stato attuale del planner
 
@@ -138,24 +188,22 @@ Ad oggi il planner locale:
 - salva stato in `localStorage`;
 - genera e visualizza path di conquista;
 - esporta e importa le grid in JSON;
-- produce piu` soluzioni simulate per la conquista del Golden Palace.
+- produce soluzioni simulate per conquista Golden Palace (Balanced, Cannon Control, Direct Breach);
+- produce simulazione "Outpost Raid" verso gli outpost del settore;
+- mostra timing corretti e regole reali nella nota di simulazione.
 
 ## Limiti attuali
 
-Il simulatore non e` ancora un modello "perfetto" del gameplay reale.
-
-Limiti noti:
-
-- il dataset locale e` ricostruito da dati pubblici estratti, non da API ufficiali del gioco;
-- il concetto di "Bank Stronghold" e` attualmente inferito dal layer `stronghold_territory` livello 10 centrale;
-- il pathfinding usa euristiche topologiche sul dataset locale;
-- la contesa reale tra alleanze avversarie non e` ancora modellata;
-- il tempo di marcia e la pressione sui cannoni sono stimati, non simulati con formule di gioco ufficiali.
+- Il dataset locale e` ricostruito da dati pubblici, non da API ufficiali;
+- La **scadenza di bank (3gg) e city (6gg)** NON e` ancora modellata nella simulazione — i piani mostrano giorni minimi di conquista, non l'intero ciclo stagionale;
+- La contesa reale tra alleanze avversarie non e` modellata;
+- Il tempo di marcia reale non e` simulato;
+- I 4 outpost cardinali come posizioni cannone non sono distinti dagli altri 4 nella visualizzazione.
 
 ## Prossimi passi suggeriti
 
-1. Distinguere meglio i 4 cannoni reali dai restanti outpost.
-2. Validare i lati d'ingresso contro screenshot o osservazione visiva della pagina live.
-3. Inserire una scorecard esplicita per ogni piano con breakdown completo.
-4. Aggiungere un confronto "economy first" vs "speed first" vs "capture first".
-5. Valutare, in un secondo momento, un backend o salvataggio collaborativo solo dopo aver fissato bene il frontend.
+1. Modellare la scadenza bank/city nel simulatore (ogni 3/6 giorni le territory tornano neutrali).
+2. Distinguere visivamente i 4 outpost cardinali (cannon positions) dagli altri 4.
+3. Validare i lati d'ingresso verso GP contro screenshot live.
+4. Aggiungere confronto "economy first" vs "speed first" vs "capture first".
+5. Eventuale backend/salvataggio collaborativo solo dopo aver fissato il frontend.
