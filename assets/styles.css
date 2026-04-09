@@ -857,6 +857,11 @@ textarea {
   font-size: 0.78rem;
 }
 
+.simulation-metric--expiry {
+  background: rgba(255, 152, 0, 0.08);
+  border-color: rgba(255, 152, 0, 0.28);
+}
+
 .planner-stage {
   display: grid;
   gap: 0.75rem;

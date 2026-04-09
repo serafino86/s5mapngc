@@ -1947,6 +1947,51 @@
     return metrics;
   }
 
+  function computeSeasonMaintenance(schedule) {
+    var SEASON_DAYS = 56;
+    var BANK_EXPIRY = SEASON_CONFIG.territory.bankExpiryDays;
+    var CITY_EXPIRY = SEASON_CONFIG.territory.cityExpiryDays;
+
+    var firstCaptureDay = {};
+    schedule.forEach(function (step) {
+      if (step.action === "release" || firstCaptureDay[step.areaId]) return;
+      var point = pointById(step.areaId);
+      if (point && (point.territoryKind === "bank" || isCity(point))) {
+        firstCaptureDay[step.areaId] = step.day;
+      }
+    });
+
+    var bankRecaptures = 0;
+    var cityRecaptures = 0;
+    var events = [];
+
+    Object.keys(firstCaptureDay).forEach(function (id) {
+      var point = pointById(id);
+      if (!point) return;
+      var captureDay = firstCaptureDay[id];
+      var expiry = point.territoryKind === "bank" ? BANK_EXPIRY : CITY_EXPIRY;
+      var day = captureDay + expiry;
+      while (day <= SEASON_DAYS) {
+        if (point.territoryKind === "bank") bankRecaptures += 1;
+        else cityRecaptures += 1;
+        events.push({ day: day, id: id, kind: point.territoryKind, name: pointName(point) });
+        day += expiry;
+      }
+    });
+
+    events.sort(function (a, b) { return a.day - b.day; });
+
+    var fightDaysSet = {};
+    events.forEach(function (e) { fightDaysSet[e.day] = true; });
+
+    return {
+      bankRecaptures: bankRecaptures,
+      cityRecaptures: cityRecaptures,
+      totalSeasonFightDays: Object.keys(fightDaysSet).length,
+      events: events
+    };
+  }
+
   function estimatePlanScore(plan) {
     var alliance = currentAlliance();
     var isCoreAlliance = alliance && (alliance.priorityRank || 99) <= 3;
@@ -2098,6 +2143,9 @@
           '<div class="simulation-metric">Peak day captures: ' + plan.metrics.peakDayCaptures + "</div>" +
           '<div class="simulation-metric">Final slots: ' + plan.metrics.finalCitiesOwned + "/" + plan.metrics.finalCityCapacity + " cities</div>" +
           '<div class="simulation-metric">Final banks: ' + plan.metrics.finalBanksOwned + "/" + plan.metrics.finalBankCapacity + "</div>" +
+          '<div class="simulation-metric simulation-metric--expiry">Bank recaptures (8 wks): ' + (plan.metrics.bankRecaptures || 0) + "</div>" +
+          '<div class="simulation-metric simulation-metric--expiry">City recaptures (8 wks): ' + (plan.metrics.cityRecaptures || 0) + "</div>" +
+          '<div class="simulation-metric simulation-metric--expiry">Season fight days: ' + (plan.metrics.totalSeasonFightDays || 0) + "</div>" +
         "</div>";
       solutionList.appendChild(node);
     });
@@ -2198,11 +2246,17 @@
           }
         };
 
+        var maintenance = computeSeasonMaintenance(schedule);
+        plan.metrics.bankRecaptures = maintenance.bankRecaptures;
+        plan.metrics.cityRecaptures = maintenance.cityRecaptures;
+        plan.metrics.totalSeasonFightDays = maintenance.totalSeasonFightDays;
+
         plan.summary =
           profile.label + " via " + pointName(candidate.entry) + " Lv." + candidate.entry.level +
           " · " + categoryCounts.banks + " banks and " + categoryCounts.cities + " cities on the route" +
           " · " + totalReleases + " releases" +
-          " · " + plan.metrics.totalDays + " day conquest schedule";
+          " · " + plan.metrics.totalDays + " day conquest" +
+          " · ~" + maintenance.totalSeasonFightDays + " maintenance fight days over 8 weeks";
         plan.score = estimatePlanScore(plan);
         return plan;
       });
@@ -2277,11 +2331,16 @@
           finalBankCapacity: finalDay ? finalDay.bankCapacity : computeAllianceCounts(alliance).strongholds.max
         }
       };
+      var outpostMaintenance = computeSeasonMaintenance(schedule);
+      plan.metrics.bankRecaptures = outpostMaintenance.bankRecaptures;
+      plan.metrics.cityRecaptures = outpostMaintenance.cityRecaptures;
+      plan.metrics.totalSeasonFightDays = outpostMaintenance.totalSeasonFightDays;
       plan.summary = "Outpost Raid via " + pointName(candidate.entry) + " Lv." + candidate.entry.level +
         " → " + outpostLabel + " (+100k influence on Fri/Week5-7)" +
         " · " + categoryCounts.banks + " banks and " + categoryCounts.cities + " cities on the route" +
         " · " + totalReleases + " releases" +
-        " · " + plan.metrics.totalDays + " day schedule";
+        " · " + plan.metrics.totalDays + " day reach" +
+        " · ~" + outpostMaintenance.totalSeasonFightDays + " maintenance fight days over 8 weeks";
       plan.score = estimatePlanScore(plan);
       rankedPlans.push(plan);
     });
