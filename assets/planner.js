@@ -2168,7 +2168,17 @@
       return;
     }
 
+    var sectorId = Number(warzoneSectorSelect && warzoneSectorSelect.value ? warzoneSectorSelect.value : 6);
+    var nexusPoint = allPoints.find(function (p) { return p.category === "nexus" && warzoneSectorForPoint(p) === sectorId; });
+
     var frontier = allianceFrontier(alliance);
+    // If the alliance has no owned territories, override frontier with the closest lv1-2 city
+    // in the selected war zone sector (not the global closest, which may be in another sector)
+    if (!alliance.areaIds || !alliance.areaIds.length) {
+      var sectorFrontier = warzoneStartPoints(sectorId)[0] || null;
+      if (sectorFrontier) frontier = sectorFrontier;
+    }
+
     var entries = centralBankStrongholds();
     if (!frontier || !entries.length) {
       setSimulationNote("No valid Season 5 graph data found for Golden Palace simulation.");
@@ -2190,8 +2200,6 @@
       setSimulationNote("No traversable path from the current alliance frontier to a lv 10 Bank Stronghold.");
       return;
     }
-
-    var nexusPoint = allPoints.find(function (p) { return p.category === "nexus" && warzoneSectorForPoint(p) === warzoneSectorForPoint(frontier); });
 
     var rankedPlans = entryCandidates.reduce(function (plans, candidate) {
       var profilePlans = simulationProfiles(rank)
