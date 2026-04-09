@@ -1008,6 +1008,19 @@
       });
   }
 
+  function outpostAdjacentEntries(sectorId) {
+    var outposts = allPoints.filter(function (p) { return p.category === "outpost"; });
+    var sectorOutpost = outposts.filter(function (p) { return warzoneSectorForPoint(p) === sectorId; })[0];
+    var targetOutpost = sectorOutpost || outposts[0];
+    if (!targetOutpost) return [];
+    return allPoints
+      .filter(function (p) {
+        return p.territoryKind === "bank" && pointsAdjacent(p, targetOutpost);
+      })
+      .sort(function (a, b) { return b.level - a.level; })
+      .map(function (entry) { return { entry: entry, targetOutpost: targetOutpost }; });
+  }
+
   function contaminatedLandPoints() {
     var palace = allPoints.find(function (point) { return point.category === "capital"; });
     return allPoints.filter(function (point) {
@@ -1187,19 +1200,22 @@
       return [
         { key: "safe", label: "Balanced Push" },
         { key: "cannon-heavy", label: "Cannon Control" },
-        { key: "direct", label: "Direct Breach" }
+        { key: "direct", label: "Direct Breach" },
+        { key: "outpost-control", label: "Outpost Raid" }
       ];
     }
     if (rank === "contender") {
       return [
         { key: "safe", label: "Balanced Push" },
         { key: "direct", label: "Direct Breach" },
-        { key: "cannon-heavy", label: "Cannon Pressure" }
+        { key: "cannon-heavy", label: "Cannon Pressure" },
+        { key: "outpost-control", label: "Outpost Raid" }
       ];
     }
     return [
       { key: "direct", label: "Low Risk Push" },
-      { key: "safe", label: "Opportunistic Cannon" }
+      { key: "safe", label: "Opportunistic Cannon" },
+      { key: "outpost-control", label: "Outpost Raid" }
     ];
   }
 
@@ -1208,9 +1224,10 @@
     simulationNote.innerHTML =
       "<strong>Season 5 conquest rules</strong>" +
       "<span class=\"palette-note\">" + message + "</span>" +
-      "<span class=\"palette-note\">Golden Palace attack windows: Saturday of Week 5, 6 and 7 at 13:00 server time.</span>" +
-      "<span class=\"palette-note\">Attack requires adjacent land through a lv 10 Bank Stronghold or lv 10 City.</span>" +
-      "<span class=\"palette-note\">4 cannons accelerate capture or bombard defenders. Golden Palace awards 1.8m influence.</span>";
+      "<span class=\"palette-note\">Warzone Outpost attack window: <strong>Friday</strong> of Week 5, 6 and 7 – 12h post daily reset. All 8 outposts open simultaneously. Each outpost grants <strong>100k influence</strong> to every alliance in the war zone.</span>" +
+      "<span class=\"palette-note\">Golden Palace attack window: <strong>Saturday</strong> of Week 5, 6 and 7 at 13:00 server time. Requires adjacent land through a lv 10 Bank or lv 10 City. GP awards 1.8m influence.</span>" +
+      "<span class=\"palette-note\">4 cardinal outposts (N/S/E/W of GP) also serve as cannon positions during the GP siege.</span>" +
+      "<span class=\"palette-note\">Dual strategy: Alliance A takes GP + 4 lv10 cities; Alliance B takes all 8 outposts → both qualify for challenge rewards.</span>";
   }
 
   function resourceTotalsForPath(routeIds) {
@@ -2112,7 +2129,9 @@
     }
 
     var rankedPlans = entryCandidates.reduce(function (plans, candidate) {
-      var profilePlans = simulationProfiles(rank).map(function (profile) {
+      var profilePlans = simulationProfiles(rank)
+        .filter(function (profile) { return profile.key !== "outpost-control"; })
+        .map(function (profile) {
         var baseRouteIds = uniquePathIds(candidate.path.concat([palace.id]));
         var desiredRouteIds = buildRouteVariant(baseRouteIds, profile.key);
         var schedule = buildStrategicSchedule(desiredRouteIds, alliance, profile.key);
@@ -2155,7 +2174,7 @@
             peakDayCaptures: peakDayCaptures,
             inefficiency: Math.max(0, routeIds.length - candidate.path.length),
             crystalGold: resourceTotals.crystalGold,
-            influence: resourceTotals.influence + (routeIds.indexOf(palace.id) !== -1 ? 1800000 : 0),
+            influence: resourceTotals.influence,
             cities: categoryCounts.cities,
             banks: categoryCounts.banks,
             releases: totalReleases,
@@ -2179,9 +2198,86 @@
         return plan;
       });
       return plans.concat(profilePlans);
-    }, []).sort(function (a, b) {
-      return b.score - a.score;
+    }, []);
+
+    // Outpost conquest plans (target: bank adjacent to nearest war zone outpost)
+    var outpostSector = preferredWarzoneSector();
+    var outpostEntryList = outpostAdjacentEntries(outpostSector);
+    var outpostCandidates = outpostEntryList
+      .slice(0, rank === "elite" ? 4 : 2)
+      .map(function (item) {
+        return {
+          entry: item.entry,
+          targetOutpost: item.targetOutpost,
+          path: shortestPath(frontier.id, item.entry.id, allPoints)
+        };
+      })
+      .filter(function (c) { return c.path.length; });
+
+    outpostCandidates.forEach(function (candidate) {
+      var desiredRouteIds = uniquePathIds(candidate.path);
+      var schedule = buildStrategicSchedule(desiredRouteIds, alliance, "outpost-control");
+      var routeIds = schedule
+        .filter(function (step) { return step.action !== "release"; })
+        .map(function (step) { return step.areaId; });
+      var scheduledIds = schedule
+        .filter(function (step) { return step.action !== "release"; })
+        .map(function (step) { return step.areaId; });
+      var resourceTotals = resourceTotalsForPath(scheduledIds);
+      var outpostBonus = candidate.targetOutpost && candidate.targetOutpost.resources
+        ? (candidate.targetOutpost.resources.influence || 0) : 100000;
+      var categoryCounts = routeCategoryCounts(scheduledIds);
+      var daily = summarizeSchedule(schedule);
+      var roleMetrics = planRoleMetrics(schedule);
+      var dayKeys = Object.keys(daily).map(function (key) { return Number(key); });
+      var peakDayCaptures = dayKeys.length ? Math.max.apply(null, dayKeys.map(function (day) {
+        return daily[day].banks + daily[day].cities;
+      })) : 0;
+      var warDaysUsed = dayKeys.filter(isWarDay).length;
+      var totalReleases = schedule.filter(function (step) { return step.action === "release"; }).length;
+      var finalDay = dayKeys.length ? daily[dayKeys[dayKeys.length - 1]] : null;
+      var outpostLabel = candidate.targetOutpost ? candidate.targetOutpost.label : "Warzone Outpost";
+
+      var plan = {
+        id: "outpost-plan-" + candidate.entry.id,
+        name: "Outpost Raid · " + pointName(candidate.entry) + " Lv." + candidate.entry.level,
+        styleKey: "outpost-control",
+        entryPointId: candidate.entry.id,
+        targetOutpostId: candidate.targetOutpost ? candidate.targetOutpost.id : null,
+        routeIds: routeIds,
+        hasAccess: false,
+        schedule: schedule,
+        metrics: {
+          steps: routeIds.length,
+          totalDays: dayKeys.length ? dayKeys[dayKeys.length - 1] : 0,
+          warDaysUsed: warDaysUsed,
+          peakDayCaptures: peakDayCaptures,
+          inefficiency: Math.max(0, routeIds.length - candidate.path.length),
+          crystalGold: resourceTotals.crystalGold,
+          influence: resourceTotals.influence + outpostBonus,
+          cities: categoryCounts.cities,
+          banks: categoryCounts.banks,
+          releases: totalReleases,
+          mainTrunkCaptures: roleMetrics.mainTrunkCaptures,
+          sideCaptures: roleMetrics.sideCaptures,
+          sideInterruptions: roleMetrics.sideInterruptions,
+          mixedSlotDays: roleMetrics.mixedSlotDays,
+          finalCitiesOwned: finalDay ? finalDay.citiesOwned : computeAllianceCounts(alliance).cities.current,
+          finalCityCapacity: finalDay ? finalDay.cityCapacity : computeAllianceCounts(alliance).cities.max,
+          finalBanksOwned: finalDay ? finalDay.banksOwned : computeAllianceCounts(alliance).strongholds.current,
+          finalBankCapacity: finalDay ? finalDay.bankCapacity : computeAllianceCounts(alliance).strongholds.max
+        }
+      };
+      plan.summary = "Outpost Raid via " + pointName(candidate.entry) + " Lv." + candidate.entry.level +
+        " → " + outpostLabel + " (+100k influence on Fri/Week5-7)" +
+        " · " + categoryCounts.banks + " banks and " + categoryCounts.cities + " cities on the route" +
+        " · " + totalReleases + " releases" +
+        " · " + plan.metrics.totalDays + " day schedule";
+      plan.score = estimatePlanScore(plan);
+      rankedPlans.push(plan);
     });
+
+    rankedPlans.sort(function (a, b) { return b.score - a.score; });
 
     var picked = [];
     var pickedStyles = {};

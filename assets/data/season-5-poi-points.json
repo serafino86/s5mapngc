@@ -45389,7 +45389,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -45487,7 +45490,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -45611,7 +45617,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -46645,7 +46654,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -46665,7 +46677,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -47699,7 +47714,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -47823,7 +47841,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
@@ -47921,7 +47942,10 @@
       "width": 50,
       "height": 50,
       "buff": null,
-      "resources": null,
+      "resources": {
+        "crystalGold": 0,
+        "influence": 100000
+      },
       "meta": {
         "region": null
       }
