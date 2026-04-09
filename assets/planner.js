@@ -1204,6 +1204,7 @@
   function simulationProfiles(rank) {
     if (rank === "elite") {
       return [
+        { key: "via-nexus", label: "Via Grand Nexus" },
         { key: "safe", label: "Balanced Push" },
         { key: "cannon-heavy", label: "Cannon Control" },
         { key: "direct", label: "Direct Breach" },
@@ -2190,12 +2191,25 @@
       return;
     }
 
+    var nexusPoint = allPoints.find(function (p) { return p.category === "nexus" && warzoneSectorForPoint(p) === warzoneSectorForPoint(frontier); });
+
     var rankedPlans = entryCandidates.reduce(function (plans, candidate) {
       var profilePlans = simulationProfiles(rank)
         .filter(function (profile) { return profile.key !== "outpost-control"; })
         .map(function (profile) {
-        var baseRouteIds = uniquePathIds(candidate.path.concat([palace.id]));
-        var desiredRouteIds = buildRouteVariant(baseRouteIds, profile.key);
+        var baseRouteIds;
+        if (profile.key === "via-nexus" && nexusPoint) {
+          var legToNexus = shortestPath(frontier.id, nexusPoint.id, allPoints);
+          var legToEntry = shortestPath(nexusPoint.id, candidate.entry.id, allPoints);
+          if (legToNexus.length && legToEntry.length) {
+            baseRouteIds = uniquePathIds(legToNexus.concat(legToEntry.slice(1)).concat([palace.id]));
+          } else {
+            baseRouteIds = uniquePathIds(candidate.path.concat([palace.id]));
+          }
+        } else {
+          baseRouteIds = uniquePathIds(candidate.path.concat([palace.id]));
+        }
+        var desiredRouteIds = buildRouteVariant(baseRouteIds, profile.key === "via-nexus" ? "safe" : profile.key);
         var schedule = buildStrategicSchedule(desiredRouteIds, alliance, profile.key);
         var routeIds = schedule
           .filter(function (step) { return step.action !== "release"; })
@@ -2266,8 +2280,9 @@
         var outpostSeasonBonus = outpostOnRoute ? 100000 * 2 : 0;
         plan.metrics.seasonInfluence = resourceTotals.influence + maintenance.recaptureInfluence + gpSeasonBonus + outpostSeasonBonus;
 
+        var routeIncludesNexus = nexusPoint && routeIds.indexOf(nexusPoint.id) !== -1;
         plan.summary =
-          profile.label + " via " + pointName(candidate.entry) + " Lv." + candidate.entry.level +
+          profile.label + " via " + (routeIncludesNexus ? "Grand Nexus → " : "") + pointName(candidate.entry) + " Lv." + candidate.entry.level +
           " · " + categoryCounts.banks + " banks and " + categoryCounts.cities + " cities on the route" +
           " · " + totalReleases + " releases" +
           " · " + plan.metrics.totalDays + " day conquest" +
